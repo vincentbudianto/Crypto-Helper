@@ -14,7 +14,7 @@ const EncryptForm = (props) => (
       <label htmlFor="file-input">
         <FontAwesomeIcon icon="file-upload" /> &nbsp; Upload
       </label>
-      <button className="encrypt-button">
+      <button className="encrypt-button" type="submit">
         <FontAwesomeIcon icon="lock" /> &nbsp; Encrypt
       </button>
     </div>

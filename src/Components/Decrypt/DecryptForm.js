@@ -15,7 +15,7 @@ const DecryptForm = (props) => (
       <label htmlFor="file-input">
         <FontAwesomeIcon icon="file-upload" /> &nbsp; Upload
       </label>
-      <button className="decrypt-button">
+      <button className="decrypt-button" type="submit">
         <FontAwesomeIcon icon="lock-open"/> &nbsp; Decrypt
       </button>
     </div>

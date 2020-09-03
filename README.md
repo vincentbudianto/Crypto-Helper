@@ -21,15 +21,15 @@
 ## Tabel Fitur
 | No | Feature                     | Success (✔) | Fail (❌) | Details |
 |:--:|:----------------------------|:------------|:----------|:--------|
-|  1 | Vigenere standard           |             |           |         |
+|  1 | Vigenere Standard           |             |           |         |
 |  2 | Full Vigenere Cipher        |             |           |         |
 |  3 | Auto-Key Vigenere Cipher    |             |           |         |
 |  4 | Extended Vigenere Cipher    |             |           |         |
-|  5 | Playfair cipher             |             |           |         |
-|  6 | Super enkripsi              |             |           |         |
-|  7 | Affine cipher               |             |           |         |
-|  8 | Hill cipher (matriks 3 x 3) |             |           |         |
-|  9 | Bonus: Enigma cipher        |             |           |         |
+|  5 | Playfair Cipher             |             |           |         |
+|  6 | Super Encryption            |             |           |         |
+|  7 | Affine Cipher               |             |           |         |
+|  8 | Hill Cipher (matriks 3 x 3) |             |           |         |
+|  9 | Enigma Cipher               |             |           |         |
 
 <br>
 

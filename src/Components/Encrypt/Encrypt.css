@@ -9,6 +9,13 @@
   justify-content: center;
 }
 
+.droplist {
+  z-index: 2;
+  margin-bottom: 15px;
+  cursor: pointer;
+  outline: none;
+}
+
 .encrypt-form {
   min-width: 300px;
   z-index: 1;
@@ -129,4 +136,80 @@ button {
   background: linear-gradient(to right, #af497e, #da406d);
   background-size: 300% 300%;
   margin-left: 15px;
+}
+
+.modal-encrypt {
+  position: fixed;
+  display: none;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background-color: rgb(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.modal-content-container {
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  vertical-align: center;
+  opacity: 1;
+  border-radius: 5px;
+  margin: 15% auto auto auto;
+  padding: 30px;
+  font-weight: bold;
+  width: 60%;
+  height: auto;
+}
+
+.modal-content {
+  box-sizing: content-box;
+  height: inherit;
+  width: 100%;
+}
+
+#message {
+  color: #363537;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#encryptedResult {
+  color: #363537;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 5px;
+  white-space: nowrap;
+}
+
+.download-button {
+  color: #363537;
+  background: #af497e;
+  background: -webkit-linear-gradient(
+    to right,
+    #eafa5f,
+    #daa440
+  );
+  background: linear-gradient(to right, #eafa5f, #daa440);
+  background-size: 300% 300%;
+  justify-content: center;
+}
+
+.close-button {
+  color: #e5e0eb;
+  background: #af497e;
+  background: -webkit-linear-gradient(
+    to right,
+    #fa5f5f,
+    #da4040
+  );
+  background: linear-gradient(to right, #fa5f5f, #da4040);
+  background-size: 300% 300%;
+  justify-content: center;
 }
