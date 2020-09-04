@@ -33,15 +33,37 @@ module.exports = {
 			}
 		}
 
-		// Display matrix
-		// for (let m = 0; m < matrix.length; m++) {
-		// 	for (let n = 0; n < matrix[m].length; n++) {
-		// 		console.log(m, ":", n, " -> ", matrix[m][n]);
-		// 	}
-		// }
-		// console.log(secretKey.length, ":", secretKey);
-
 		return matrix;
+	},
+
+    /**
+     * Find letter position (x,y) in secretkey matrix
+     * @param {Array} matrix
+     * @param {String} input
+     * @returns {Array} - Position
+     */
+	getPos: function (matrix, input) {
+		let out = new Array(2);
+		let i = 0;
+		let found = false;
+
+		while (!found && (i < matrix.length)) {
+			let j = 0;
+
+			while (!found && (j < matrix[i].length)) {
+				if (matrix[i][j] === input) {
+					out[0] = i;
+					out[1] = j;
+					found = true;
+				} else {
+					j++;
+				}
+			}
+
+			i++;
+		}
+
+		return out;
 	},
 
     /**
@@ -63,13 +85,24 @@ module.exports = {
 		if (string.isString(plaintext) && string.isString(key)) {
 			plaintext = string.replaceCharacters(plaintext, "J", "I");
 
-			let P = string.digrams(plaintext);
+			let out = [];
+			let P = string.bigram(plaintext);
 			let K = this.generateKey(key);
 
-			console.log(P);
-			console.log(K);
+			for (let i = 0; i < P.length; i++) {
+				let pos1 = this.getPos(K, P[i][0]);
+				let pos2 = this.getPos(K, P[i][1]);
 
-			// return out;
+				if (pos1[0] == pos2[0]) {
+					out.push(K[pos1[0]][(pos1[1] + 1) % 5] + K[pos2[0]][(pos2[1] + 1) % 5])
+				} else if (pos1[1] == pos2[1]) {
+					out.push(K[(pos1[0] + 1) % 5][pos1[1]] + K[(pos2[0] + 1) % 5][pos2[1]])
+				} else {
+					out.push(K[pos1[0]][pos2[1]] + K[pos2[0]][pos1[1]])
+				}
+			}
+
+			return out.join(' ');
 		} else {
 			return "Must be string !!!";
 		}

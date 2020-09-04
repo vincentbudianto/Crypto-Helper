@@ -1,7 +1,7 @@
-var string = require('./util/string')
-var vigenere = require('./vigenere')
-var fVigenere = require('./fullVigenere')
-var aKeyVigenere = require('./autoKeyVigenere')
+let string = require('./util/string')
+let vigenere = require('./vigenere')
+let fVigenere = require('./fullVigenere')
+let aKeyVigenere = require('./autoKeyVigenere')
 
 // console.log(string.removeNonAlphabet("aaSSnana78&&"));
 // console.log(string.isString("aaSSnana78&&"));

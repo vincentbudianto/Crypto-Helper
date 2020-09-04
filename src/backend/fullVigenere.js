@@ -10,7 +10,7 @@ module.exports = {
      * @param {String} key
      * @returns {String} - Ciphertext
      */
-    encrypt : function(plaintext, key) {
+    encrypt: function(plaintext, key) {
         if (string.isString(plaintext) && string.isString(key)) {
             // Convert string to order number
             let P = string.toNumbers(plaintext);
@@ -38,7 +38,7 @@ module.exports = {
      * @param {String} key
      * @returns {String} - Plaintext
      */
-    decrypt : function(ciphertext, key) {
+    decrypt: function(ciphertext, key) {
         if (string.isString(ciphertext) && string.isString(key)) {
             // Convert string to order number
             let C = string.toNumbers(ciphertext);

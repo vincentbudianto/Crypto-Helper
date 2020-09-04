@@ -7,7 +7,7 @@ module.exports = {
      * @param {String} input
      * @returns {Boolean}
      */
-    isString : function (input) {
+    isString: function(input) {
         return ((typeof input) == "string");
     },
 
@@ -16,7 +16,7 @@ module.exports = {
      * @param {String} input
      * @returns {String}
      */
-    removeNonAlphabet : function (input) {
+    removeNonAlphabet: function(input) {
         return input.replace(/[^a-zA-z]/gi, '').toUpperCase();
     },
 
@@ -25,7 +25,7 @@ module.exports = {
      * @param {String} input
      * @returns {String}
      */
-    removeDuplicates : function (input) {
+    removeDuplicates: function(input) {
         return input.split('').filter(function (char, pos, self) {
             return self.indexOf(char) == pos;
         }).join('');
@@ -38,7 +38,7 @@ module.exports = {
      * @param {String} replace
      * @returns {String}
      */
-    replaceCharacters: function (input, search, replace) {
+    replaceCharacters: function(input, search, replace) {
         let regex = new RegExp(search, "gi");
 
         return input.replace(regex, replace.toUpperCase());
@@ -49,7 +49,7 @@ module.exports = {
      * @param {String} input - All characters must be upper case alphabet
      * @returns {Array} - Array of order numbers
      */
-    toNumbers : function (input) {
+    toNumbers: function(input) {
         input = this.removeNonAlphabet(input);
         // input = input.toUpperCase();
 
@@ -67,7 +67,7 @@ module.exports = {
      * @param {Array} input - Array of order numbers
      * @returns {String}
      */
-    toAlphabet : function (input) {
+    toAlphabet: function(input) {
         let out = "";
 
         for (let i = 0; i < input.length; i++) {
@@ -78,11 +78,11 @@ module.exports = {
     },
 
     /**
-     * Arrange sentence to digrams
+     * Arrange sentence to bigram
      * @param {String} input
      * @returns {Array} - Array of alphabets in pair
      */
-    digrams : function (input) {
+    bigram: function(input) {
         input = this.removeNonAlphabet(input);
 
         let pos = 0;
@@ -107,7 +107,7 @@ module.exports = {
                 tempDigram += input.charAt(pos);
             }
 
-            // Check last digrams length
+            // Check last bigram length
             if ((input.length % 2) != 0 && pos == (input.length - 1) && (tempDigram.length % 2) != 0) {
                 tempDigram += "X";
                 out.push(tempDigram);
