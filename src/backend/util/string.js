@@ -16,8 +16,8 @@ module.exports = {
      * @param {String} input
      * @returns {String}
      */
-    removeNonAlphabet: function(input) {
-        return input.replace(/[^a-zA-z]/gi, '').toUpperCase();
+    removeNonAlphabet : function (input) {
+        return input.replace(/[^a-zA-Z]/gi, '');
     },
 
     /**
@@ -62,6 +62,18 @@ module.exports = {
         return out;
     },
 
+    /**
+     * Converts all alphabet to ASCII
+     * @param {String} input - All characters must be upper case alphabet
+     * @returns {Array} - Array of order numbers
+     */
+    toASCII : function (input) {
+        let out = [];
+        for (var i = 0; i < input.length; i++) {
+            out.push(input.charCodeAt(i));
+        }
+        return out;
+    },
     /**
      * Converts all number order in alphabet to alphabet (e.g. 10 -> J)
      * @param {Array} input - Array of order numbers
@@ -119,6 +131,14 @@ module.exports = {
             pos++;
         }
 
+        return out;
+    },
+    removeLetter : function (input, letter) {
+        let out = "";
+        for (var i = 0; i < input.length; i++) {
+            if (input[i] != letter)
+            out += input[i];
+        }
         return out;
     }
 }
