@@ -102,7 +102,7 @@ module.exports = {
 				}
 			}
 
-			return out.join(' ');
+			return out.join("");
 		} else {
 			return "Must be string !!!";
 		}
@@ -139,7 +139,7 @@ module.exports = {
 				}
 			}
 
-			return out.join(' ');
+			return out.join("");
 		} else {
 			return "Must be string !!!";
 		}
