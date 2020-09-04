@@ -25,9 +25,7 @@ module.exports = {
             }
 
             for (let i = 0; i < P.length; i++) {
-                let x = P[i] + K[i];
-
-                P[i] = x % 26;
+                P[i] = string.mod((P[i] + K[i]), 26);
             }
 
             let out = string.toAlphabet(P);
@@ -53,9 +51,7 @@ module.exports = {
             if (K == []) return ciphertext; // Do nothing
 
             for (let i = 0; i < C.length; i++) {
-                let x = C[i] - K[i] + 26;
-
-                C[i] = x % 26;
+                C[i] = string.mod((C[i] - K[i]), 26);
                 K.push(C[i]);
             }
 

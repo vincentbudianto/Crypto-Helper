@@ -1,4 +1,4 @@
-/* Vigenere encription & decription*/
+/* Vigenere encription & decription */
 var string = require('./util/string')
 
 module.exports = {
@@ -20,8 +20,7 @@ module.exports = {
         if (K == []) return plaintext; // Do nothing
 
         for (var i = 0; i < P.length; i++) {
-            let x = P[i] + K[i % K.length];
-            P[i] = x % 256;
+            P[i] = string.mod((P[i] + K[string.mod(i, K.length)]), 256);
         }
 
         return P;
@@ -45,8 +44,7 @@ module.exports = {
         if (K == []) return ciphertext; // Do nothing
 
         for (var i = 0; i < C.length; i++) {
-            let x = C[i] - K[i % K.length] + 256;
-            C[i] = x % 256;
+            C[i] = string.mod((C[i] - K[string.mod(i, K.length)]), 256);
         }
 
         return C;

@@ -94,9 +94,9 @@ module.exports = {
 				let pos2 = this.getPos(K, P[i][1]);
 
 				if (pos1[0] == pos2[0]) {
-					out.push(K[pos1[0]][(pos1[1] + 1) % 5] + K[pos2[0]][(pos2[1] + 1) % 5])
+					out.push(K[pos1[0]][string.mod((pos1[1] + 1), 5)] + K[pos2[0]][string.mod((pos2[1] + 1), 5)])
 				} else if (pos1[1] == pos2[1]) {
-					out.push(K[(pos1[0] + 1) % 5][pos1[1]] + K[(pos2[0] + 1) % 5][pos2[1]])
+					out.push(K[string.mod((pos1[0] + 1), 5)][pos1[1]] + K[string.mod((pos2[0] + 1), 5)][pos2[1]])
 				} else {
 					out.push(K[pos1[0]][pos2[1]] + K[pos2[0]][pos1[1]])
 				}
@@ -131,9 +131,9 @@ module.exports = {
 				let pos2 = this.getPos(K, C[i][1]);
 
 				if (pos1[0] == pos2[0]) {
-					out.push(K[pos1[0]][(pos1[1] - 1) % 5] + K[pos2[0]][(pos2[1] - 1) % 5])
+					out.push(K[pos1[0]][string.mod((pos1[1] - 1), 5)] + K[pos2[0]][string.mod((pos2[1] - 1), 5)])
 				} else if (pos1[1] == pos2[1]) {
-					out.push(K[(pos1[0] - 1) % 5][pos1[1]] + K[(pos2[0] - 1) % 5][pos2[1]])
+					out.push(K[string.mod((pos1[0] - 1), 5)][pos1[1]] + K[string.mod((pos2[0] - 1), 5)][pos2[1]])
 				} else {
 					out.push(K[pos1[0]][pos2[1]] + K[pos2[0]][pos1[1]])
 				}

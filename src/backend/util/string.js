@@ -1,4 +1,4 @@
-/* All string-related utility function is stored here*/
+/* All string-related utility function is stored here */
 let a = "A";
 
 module.exports = {
@@ -88,6 +88,49 @@ module.exports = {
 
         return out;
     },
+
+    /**
+     * Mod operator (eg: mod(-10, 26) = 16)
+     * @param {Number} a
+     * @param {Number} b
+     * @returns {Number}
+     */
+    mod: function(a, b) {
+        let res = a % b;
+
+        return Math.floor(res >= 0 ? res : res + b);
+    },
+
+	/**
+     * Modular inverse (eg: modinv(7, 26) = 15)
+	 * @param {Number} m
+	 * @param {Number} n
+	 * @returns {Number}
+	 */
+    modInverse: function (m, n) {
+        // Find gcd
+        const s = [];
+        let b = n;
+
+        while (b) {
+            [m, b] = [b, m % b];
+            s.push({ m, b });
+        }
+
+        // Find inverse
+        if (m !== 1) {
+            return NaN;
+        } else {
+            let x = 1;
+            let y = 0;
+
+            for (let i = s.length - 2; i >= 0; --i) {
+                [x, y] = [y, x - y * Math.floor(s[i].m / s[i].b)];
+            }
+
+            return (y % n + n) % n;
+        }
+	},
 
     /**
      * Arrange sentence to bigram

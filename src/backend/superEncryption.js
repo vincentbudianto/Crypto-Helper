@@ -4,12 +4,9 @@ let vigenere = require('./vigenere')
 
 module.exports = {
     /**
-     * Generate secret key with rules :
-	 * 1. Remove all letter J from key
-	 * 2. Add all missing alphabet from key except letter J
-	 * 3. Insert key into the 5x5 square
+     * Generate matrix filled with alphabet :
      * @param {String} input
-     * @param {Integer} k
+     * @param {Number} k
      * @returns {2dArray} - Transposedtext
      */
 	generateTable: function (input, k) {
@@ -30,7 +27,7 @@ module.exports = {
 					matrix[k][l] = input[i];
 					i++;
 				} else {
-					matrix[k][l] = alphabet[input.length % 26];
+					matrix[k][l] = alphabet[string.mod(input.length, 26)];
 				}
 			}
 		}
@@ -42,10 +39,10 @@ module.exports = {
 	 * Encrypts with steps :
 	 * 1. Encrypt using substitution cipher
 	 * 2. Encrypt using transposition cipher
-	* @param {String} plaintext
-	* @param {String} key
-	* @returns {String} - Ciphertext
-	*/
+	 * @param {String} plaintext
+	 * @param {String} key
+	 * @returns {String} - Ciphertext
+	 */
 	encrypt: function (plaintext, key) {
 		if (string.isString(plaintext) && string.isString(key)) {
 			plaintext = string.removeNonAlphabet(plaintext);
@@ -61,8 +58,6 @@ module.exports = {
 					out += matrix[j][i];
 				}
 			}
-
-			console.log(matrix);
 
 			return out;
 		} else {
@@ -86,15 +81,12 @@ module.exports = {
 			let k = Math.ceil(Math.sqrt(ciphertext.length));
 			let matrix = this.generateTable(ciphertext, k);
 			let temp = "";
-			console.log(matrix);
 
 			for (let i = 0; i < k; i++) {
 				for (let j = 0; j < k; j++) {
 					temp += matrix[j][i];
 				}
 			}
-
-			console.log(temp);
 
 			let out = vigenere.decrypt(temp, key);
 

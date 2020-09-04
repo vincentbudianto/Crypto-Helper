@@ -19,7 +19,7 @@ module.exports = {
             if (K == []) return plaintext; // Do nothing if key doesn't exist
 
             for (let i = 0; i < P.length; i++) {
-                let Kn = K[i % K.length]; // charTable index by Ki
+                let Kn = K[string.mod(i, K.length)]; // charTable index by Ki
 
                 P[i] = charTable[Kn][P[i]];
             }
@@ -47,7 +47,7 @@ module.exports = {
             if (K == []) return ciphertext; // Do nothing if key doesn't exist
 
             for (let i = 0; i < C.length; i++) {
-                let Kn = K[i % K.length]; // charTable index by Ki
+                let Kn = K[string.mod(i, K.length)]; // charTable index by Ki
 
                 C[i] = charTable[Kn].indexOf(C[i]);
             }
