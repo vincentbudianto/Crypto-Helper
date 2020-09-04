@@ -75,8 +75,8 @@ module.exports = {
 	 * 5. If two letters are on the same key line, then each letter is replaced with the letter to the right (cyclic)
 	 * 6. If two letters are in the same key column, each letter is replaced with a letter under it (cyclic)
 	 * 7. If two letters are not in the same row or column, then :
-	 * 	  • The first letter is replaced with a letter at the intersection of the first letter row with the second letter column
-	 *	  • The second letter is replaced by a letter at the fourth corner of the rectangle formed from the three letters used so far
+	 * 	  • The first letter is replaced with the letter at the intersection of the first letter row with the second letter column
+	 *	  • The second letter is replaced with the letter at the fourth corner of the rectangle formed from the three letters used so far
      * @param {String} plaintext
      * @param {String} key
      * @returns {String} - Ciphertext
@@ -110,11 +110,11 @@ module.exports = {
 
     /**
      * Decrypts with rules :
-	 * 1. If two letters are on the same square row then each letter is replaced by a letter to its left
+	 * 1. If two letters are on the same square row then each letter is replaced with a letter to its left
 	 * 2. If two letters are in the same square column then each letter is replaced with a letter above it
 	 * 3. If two letters are not in the same row or the same column, then :
-	 *    • The first letter is replaced by the letter at the intersection of the first letter row with the second letter column
-	 *    • The second letter is replaced by a letter at the fourth vertex of the rectangle formed from the three letters used so far
+	 *    • The first letter is replaced with the letter at the intersection of the first letter row with the second letter column
+	 *    • The second letter is replaced with the letter at the fourth vertex of the rectangle formed from the three letters used so far
 	 * 4. Throw away any letter X which has no meaning
      * @param {String} ciphertext
      * @param {String} key
@@ -122,17 +122,24 @@ module.exports = {
      */
 	decrypt: function (ciphertext, key) {
 		if (string.isString(ciphertext) && string.isString(key)) {
-			// Convert string to order number
-			let C = string.toNumbers(ciphertext);
-			let K = string.toNumbers(key);
+			let out = [];
+			let C = string.bigram(ciphertext);
+			let K = this.generateKey(key);
 
-			if (K == []) return ciphertext; // Do nothing
 			for (let i = 0; i < C.length; i++) {
-				let x = C[i] - K[i % K.length] + 26;
-				C[i] = x % 26;
+				let pos1 = this.getPos(K, C[i][0]);
+				let pos2 = this.getPos(K, C[i][1]);
+
+				if (pos1[0] == pos2[0]) {
+					out.push(K[pos1[0]][(pos1[1] - 1) % 5] + K[pos2[0]][(pos2[1] - 1) % 5])
+				} else if (pos1[1] == pos2[1]) {
+					out.push(K[(pos1[0] - 1) % 5][pos1[1]] + K[(pos2[0] - 1) % 5][pos2[1]])
+				} else {
+					out.push(K[pos1[0]][pos2[1]] + K[pos2[0]][pos1[1]])
+				}
 			}
-			let out = string.toAlphabet(C);
-			return out;
+
+			return out.join(' ');
 		} else {
 			return "Must be string !!!";
 		}
