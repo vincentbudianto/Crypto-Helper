@@ -98,7 +98,7 @@ module.exports = {
     mod: function(a, b) {
         let res = a % b;
 
-        return Math.floor(res >= 0 ? res : res + b);
+        return Math.floor(res >= 0 ? res : this.mod(a + b, b));
     },
 
 	/**
@@ -111,6 +111,8 @@ module.exports = {
         // Find gcd
         const s = [];
         let b = n;
+
+        while (m < 0) m+=n;
 
         while (b) {
             [m, b] = [b, m % b];
