@@ -182,7 +182,8 @@ button {
 
 #encryptedResult {
   color: #363537;
-  font-size: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
   margin-top: 0;
   margin-bottom: 5px;
   white-space: nowrap;
@@ -199,6 +200,7 @@ button {
   background: linear-gradient(to right, #eafa5f, #daa440);
   background-size: 300% 300%;
   justify-content: center;
+  font-weight: 500;
 }
 
 .close-button {
@@ -212,4 +214,10 @@ button {
   background: linear-gradient(to right, #fa5f5f, #da4040);
   background-size: 300% 300%;
   justify-content: center;
+  font-weight: 500;
+}
+
+.download-file {
+  height: 0;
+  width: 0;
 }

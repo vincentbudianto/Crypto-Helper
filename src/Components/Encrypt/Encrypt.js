@@ -3,12 +3,13 @@ import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Encrypt.css";
 
-var aKVig = require("../../backend/autoKeyVigenere");
-var eVig = require("../../backend/extendedVigenere");
-var fVig = require("../../backend/fullVigenere");
-var playfair = require("../../backend/playfair");
-var sEnc = require("../../backend/superEncryption");
-var Vig = require("../../backend/vigenere");
+let affine = require("../../backend/affine");
+let aKVig = require("../../backend/autoKeyVigenere");
+let eVig = require("../../backend/extendedVigenere");
+let fVig = require("../../backend/fullVigenere");
+let playfair = require("../../backend/playfair");
+let sEnc = require("../../backend/superEncryption");
+let Vig = require("../../backend/vigenere");
 
 const selectStyles = {
   option: (provided, state) => ({
@@ -25,7 +26,7 @@ const selectOptions = [
   { value: eVig, label: "Extended Vigenere Cipher" },
   { value: playfair, label: "Playfair Cipher" },
   { value: sEnc, label: "Super Encription" },
-  { value: "Affine Cipher", label: "Affine Cipher" },
+  { value: affine, label: "Affine Cipher" },
   { value: "Hill Cipher", label: "Hill Cipher" },
   { value: "Enigma Cipher", label: "Enigma Cipher" }
 ];
@@ -54,18 +55,18 @@ class Encrypt extends Component {
   }
 
   onMethodChange = event => {
-
     // Update the state
     console.log(event)
     this.setState({ method: event.value })
   }
 
-  // On file select (from the pop up) 
-  onFileChange = event => { 
-     
-    // Update the state 
-    this.setState({ selectedFile: event.target.files[0] }); 
-    this.setState({ fileName: event.target.files[0].name })
+  // On file select (from the pop up)
+  onFileChange = event => {
+    // Update the state
+    if (event.target.files[0] != undefined) {
+      this.setState({ selectedFile: event.target.files[0] });
+      this.setState({ fileName: event.target.files[0].name })
+    }
   };
 
   handleFileRead = (e) => {
@@ -75,16 +76,19 @@ class Encrypt extends Component {
 
   handleEncrypt = async (e) => {
     e.preventDefault();
-    console.log("encrypt");
+
     if (this.state.method !== undefined && this.state.key !== "") {
       console.log(this.state.method)
+
       if (this.state.text !== "") {
-      console.log(this.state.text)
-      console.log(this.state.key)
-      alert(this.state.method.encrypt(this.state.text, this.state.key)) // Encryption result
-      /**
-       * TODO : Connect to modal
-       */
+        console.log(this.state.text)
+        console.log(this.state.key)
+        document.getElementById('encryptedResult').innerHTML = this.state.method.encrypt(this.state.text, this.state.key);
+        document.getElementById("modal-result").style.display = "block";
+        // alert(this.state.method.encrypt(this.state.text, this.state.key)) // Encryption result
+        /**
+         * TODO : Connect to modal
+         */
       }
       else if (this.state.selectedFile !== undefined) {
         console.log(this.state.selectedFile);
@@ -100,10 +104,13 @@ class Encrypt extends Component {
     const file = new Blob([document.getElementById("encryptedResult").value], {
       type: "text/plain;charset=utf-8",
     });
+
+    element.className = "download-file";
     element.href = URL.createObjectURL(file);
     element.download = "result.txt";
     document.body.appendChild(element);
     element.click();
+    element.remove();
   }
 
   closeModal() {
@@ -142,7 +149,7 @@ class Encrypt extends Component {
               <div className="button-container">
                 <input id="file-input" type="file" name="file" className="upload-button" onChange={this.onFileChange} />
                 <label htmlFor="file-input">
-                  <FontAwesomeIcon icon="file-upload" /> &nbsp; {this.state.fileName === "" ? "Upload" : truncate(this.state.fileName)}
+                  <FontAwesomeIcon icon={this.state.fileName === "" ? "file-upload" : "file"} /> &nbsp; {this.state.fileName === "" ? "Upload" : truncate(this.state.fileName)}
                 </label>
                 <button className="encrypt-button" type="submit">
                   <FontAwesomeIcon icon="lock" /> &nbsp; Encrypt
@@ -157,7 +164,7 @@ class Encrypt extends Component {
               <p id="message">Result</p>
               <textarea id="encryptedResult" type="text" readOnly rows="6"></textarea>
               <div className="button-container">
-                <button className="download-button">
+                <button className="download-button" onClick={this.download}>
                   <FontAwesomeIcon icon="cloud-download-alt" /> &nbsp; Download
                 </button>
                 <button className="close-button" onClick={this.closeModal}>
