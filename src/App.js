@@ -7,11 +7,11 @@ import { GlobalStyles } from "./global";
 import { lightTheme, darkTheme } from "./theme";
 import { useDarkMode } from "./useDarkMode";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faLock, faLockOpen, faFile, faFileUpload, faCloudDownloadAlt, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faLockOpen, faUnlock, faFile, faFileUpload, faCloudDownloadAlt, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import Switch from "./Components/switch";
 import './App.css';
 
-library.add(faLock, faLockOpen, faFile, faFileUpload, faCloudDownloadAlt, faTimesCircle);
+library.add(faLock, faLockOpen, faUnlock, faFile, faFileUpload, faCloudDownloadAlt, faTimesCircle);
 
 function App() {
   const [theme, toggleTheme, componentMounted] = useDarkMode();

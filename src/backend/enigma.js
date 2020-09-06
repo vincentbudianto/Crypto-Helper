@@ -192,7 +192,7 @@ module.exports = {
 	},
 
 	/**
-	 * Encrypts with enigma cipher
+	 * Encrypts and decrypts with enigma cipher
 	 * @param {String} plaintext
 	 * @param {String} key
 	 * @param {String} rotorType
@@ -200,9 +200,9 @@ module.exports = {
 	 * @param {String} wiring
 	 * @returns {String} - Ciphertext
 	 */
-	encrypt: function (plaintext, key, rotorType, wheel, wiring) {
-		if (string.isString(plaintext) && string.isString(key)) {
-			rotorType = rotorType.split("|");
+	cipher: function (plaintext, key, rotorType, wheel, wiring) {
+		if (string.isString(plaintext) && string.isString(key) && string.isString(wiring)) {
+			rotorType = rotorType.split(" ");
 			plaintext = string.removeNonAlphabet(plaintext);
 			key = string.removeNonAlphabet(key).slice(0, rotorType.length);
 
@@ -231,9 +231,9 @@ module.exports = {
 
 					for (let m = (rotor.length - 1); m > 0; m--) {
 						if (turn) {
-							console.log("\nnotch :", m + 1, '-->', notch[m]);
-							console.log("letter", (j + 1));
-							console.log("before key position :", secretkey[0][0], secretkey[1][0], secretkey[2][0]);
+							// console.log("\nnotch :", m + 1, '-->', notch[m]);
+							// console.log("letter", (j + 1));
+							// console.log("before key position :", secretkey[0][0], secretkey[1][0], secretkey[2][0]);
 
 							let c = rotor[m - 1].shift();
 							let d = secretkey[m - 1].shift();
@@ -241,7 +241,7 @@ module.exports = {
 							rotor[m - 1].push(c);
 							secretkey[m - 1].push(d);
 
-							console.log("after key position :", secretkey[0][0], secretkey[1][0], secretkey[2][0]);
+							// console.log("after key position :", secretkey[0][0], secretkey[1][0], secretkey[2][0]);
 
 							if (!notch[m - 1].includes(d)) {
 								turn = false;
@@ -332,18 +332,7 @@ module.exports = {
 
 			return out.join('');
 		} else {
-            return "Must be string !!!";
+            return "INPUT ERROR";
 		}
-	},
-
-	/**
-	 * Decrypts with enigma cipher
-	 * @param {String} ciphertext
-	 * @param {String} key
-	 * @param {String} rotorType
-	 * @param {String} wheel
-	 * @param {String} wiring
-	 * @returns {String} - Plaintext
-	 */
-	decrypt: function (ciphertext, key, rotorType, wheel, wiring) {},
+	}
 };

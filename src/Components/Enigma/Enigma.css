@@ -1,10 +1,10 @@
-.wrapper-decrypt {
+.wrapper-enigma {
   height: auto;
   justify-content: center;
   align-items: center;
 }
 
-.container-decrypt {
+.container-enigma {
   display: flex;
   justify-content: center;
 }
@@ -16,7 +16,7 @@
   outline: none;
 }
 
-.decrypt-form {
+.enigma-form {
   min-width: 300px;
   z-index: 1;
 }
@@ -121,19 +121,19 @@ button {
   margin-right: 15px;
 }
 
-.decrypt-button {
+.enigma-button {
   background: #af497e;
   background: -webkit-linear-gradient(
     to right,
-    #32cfbe,
-    #34a7bf
+    #6e32cf,
+    #20dddd
   );
-  background: linear-gradient(to right,#32cfbe, #34a7bf);
+  background: linear-gradient(to right,#6e32cf, #6e32cf);
   background-size: 300% 300%;
   margin-left: 15px;
 }
 
-.modal-decrypt {
+.modal-enigma {
   position: fixed;
   display: none;
   left: 0;
@@ -175,7 +175,7 @@ button {
   white-space: nowrap;
 }
 
-#decryptedResult {
+#enigmaResult {
   color: #363537;
   font-size: 1.25rem;
   font-weight: 600;

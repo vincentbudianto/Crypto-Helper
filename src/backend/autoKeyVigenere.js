@@ -14,8 +14,6 @@ module.exports = {
             let P = string.toNumbers(plaintext);
             let K = string.toNumbers(key);
 
-            if (K == []) return plaintext; // Do nothing
-
             // Add key until same length
             let index = 0;
 
@@ -32,7 +30,7 @@ module.exports = {
 
             return out;
         } else {
-            return "Must be string !!!";
+            return "INPUT ERROR";
         }
     },
 
@@ -48,8 +46,6 @@ module.exports = {
             let C = string.toNumbers(ciphertext);
             let K = string.toNumbers(key);
 
-            if (K == []) return ciphertext; // Do nothing
-
             for (let i = 0; i < C.length; i++) {
                 C[i] = string.mod((C[i] - K[i]), 26);
                 K.push(C[i]);
@@ -59,7 +55,7 @@ module.exports = {
 
             return out;
         } else {
-            return "Must be string !!!";
+            return "INPUT ERROR";
         }
     }
 }

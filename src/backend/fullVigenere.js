@@ -16,8 +16,6 @@ module.exports = {
             let P = string.toNumbers(plaintext);
             let K = string.toNumbers(key);
 
-            if (K == []) return plaintext; // Do nothing if key doesn't exist
-
             for (let i = 0; i < P.length; i++) {
                 let Kn = K[string.mod(i, K.length)]; // charTable index by Ki
 
@@ -28,7 +26,7 @@ module.exports = {
 
             return out;
         } else {
-            return "Must be string !!!";
+            return "INPUT ERROR";
         }
     },
 
@@ -44,8 +42,6 @@ module.exports = {
             let C = string.toNumbers(ciphertext);
             let K = string.toNumbers(key);
 
-            if (K == []) return ciphertext; // Do nothing if key doesn't exist
-
             for (let i = 0; i < C.length; i++) {
                 let Kn = K[string.mod(i, K.length)]; // charTable index by Ki
 
@@ -56,7 +52,7 @@ module.exports = {
 
             return out;
         } else {
-            return "Must be string !!!";
+            return "INPUT ERROR";
         }
     }
 }

@@ -52,5 +52,5 @@ let math = require('mathjs')
 // console.log(hill.encrypt("paymoremoney", "17 17 5 21 18 21 2 2 19"))
 // console.log(hill.decrypt("LNSHDLEWMTRW", "17 17 5 21 18 21 2 2 19"))
 console.log("\nEnigma :");
-console.log(enigma.encrypt("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", "PPP", "I|I|I", "Reflector B", ""))
-// console.log(enigma.decrypt("LNSHDLEWMTRW", "A A A A"))
+console.log(enigma.cipher("Halo Apa kabar", "A A A", "I|II|III", "Reflector B", ""))
+console.log(enigma.cipher("IDBMOUCZLKKL", "A A A", "I|II|III", "Reflector B", ""))

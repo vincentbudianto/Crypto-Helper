@@ -56,11 +56,6 @@ input[type=text] {
   outline: none;
 }
 
-.input-message {
-  font-size: 0.75rem;
-  margin-bottom: 500px;
-}
-
 button {
   font-family: "Montserrat";
   padding: 15px 60px;

@@ -17,8 +17,6 @@ module.exports = {
 
         if (typeof key == "string") K = string.toASCII(key);
 
-        if (K == []) return plaintext; // Do nothing
-
         for (var i = 0; i < P.length; i++) {
             P[i] = string.mod((P[i] + K[string.mod(i, K.length)]), 256);
         }
@@ -40,8 +38,6 @@ module.exports = {
         if (typeof ciphertext == "string") C = string.toASCII(ciphertext);
 
         if (typeof key == "string") K = string.toASCII(key);
-
-        if (K == []) return ciphertext; // Do nothing
 
         for (var i = 0; i < C.length; i++) {
             C[i] = string.mod((C[i] - K[string.mod(i, K.length)]), 256);

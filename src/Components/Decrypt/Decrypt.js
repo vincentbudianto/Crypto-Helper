@@ -17,8 +17,8 @@ const selectStyles = {
     ...provided,
     borderRadius: "10px",
     color: "#000000",
-  }),
-};
+  })
+}
 
 const selectOptions = [
   { value: vigenere, label: "Vigenere Standard" },
@@ -28,9 +28,8 @@ const selectOptions = [
   { value: playfair, label: "Playfair Cipher" },
   { value: sEncryption, label: "Super Encription" },
   { value: affine, label: "Affine Cipher" },
-  { value: hill, label: "Hill Cipher" },
-  { value: "Enigma Cipher", label: "Enigma Cipher" },
-];
+  { value: hill, label: "Hill Cipher" }
+]
 
 const truncate = (input) => {
   return (input.length > 10) ? input.substr(0, 9) + '...' : input;
@@ -44,7 +43,7 @@ class Decrypt extends Component {
     selectedFile: undefined,
     fileName: "",
     text: "",
-    key: "",
+    key: ""
   }
 
   onTextChange = event => {
@@ -56,7 +55,6 @@ class Decrypt extends Component {
   }
 
   onMethodChange = event => {
-    // Update the state
     this.setState({ method: event.value })
 
     if (event.value == vigenere || event.value == fVigenere || event.value == aKeyVigenere || event.value == eVigenere || event.value == playfair || event.value == sEncryption) {
@@ -70,12 +68,11 @@ class Decrypt extends Component {
 
   // On file select (from the pop up)
   onFileChange = event => {
-    // Update the state
     if (event.target.files[0] != undefined) {
       this.setState({ selectedFile: event.target.files[0] });
       this.setState({ fileName: event.target.files[0].name })
     }
-  };
+  }
 
   handleFileRead = (e) => {
     const content = fileReader.result;
@@ -141,8 +138,8 @@ class Decrypt extends Component {
               ...theme.colors,
               primary50: "#95e8e6",
               primary25: "#b0f1f7",
-              primary: "#b0f7f0",
-            },
+              primary: "#b0f7f0"
+            }
           })}
           options={selectOptions}
           onChange={this.onMethodChange}
@@ -155,7 +152,6 @@ class Decrypt extends Component {
 
               <label htmlFor="key" id="label-key">Key</label>
               <input id="key-input" placeholder="please select decryption method" type="text" name="key" onChange={this.onKeyChange} value={this.state.key}/>
-              <span id="false-key-msg" className="input-message"></span>
 
               <div className="button-container">
                 <input id="file-input" type="file" name="file" className="upload-button" onChange={this.onFileChange} />

@@ -16,7 +16,7 @@
   direction: column;
   flex-wrap: wrap;
   flex-grow: 1;
-  margin-left: 5%;
+  margin-left: 25px;
   margin-right: 5%;
   height: 100%;
 }
@@ -35,7 +35,7 @@
 }
 
 a {
-  margin-top: 1%;
+  margin-top: 10px;
   height: 80%;
   text-decoration-line: none;
   display: inline-block;

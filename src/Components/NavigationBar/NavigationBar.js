@@ -25,6 +25,12 @@ class NavigationBar extends Component {
             </div>
           </Link>
 
+          <Link to="/enigma">
+            <div className="navbar-button">
+              <font color="white">Enigma Machine</font>
+            </div>
+          </Link>
+
           <Link to="/docs">
             <div className="navbar-button">
               <font color="white">Documentation</font>

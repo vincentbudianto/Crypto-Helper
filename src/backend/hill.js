@@ -35,9 +35,6 @@ module.exports = {
 	 */
 	encrypt: function(plaintext, key) {
 		if (string.isString(plaintext) && string.isString(key)) {
-            // if empty, do nothing
-            if (plaintext === "" || key === "") return "Must not empty !!!";
-
             // Convert string key to matrix
             let mK = [[0,0,0],[0,0,0],[0,0,0]];
             let keyDigits = key.split(" ");
@@ -78,7 +75,7 @@ module.exports = {
 
             return out;
 		} else {
-			return "Must be string !!!";
+			return "INPUT ERROR";
 		}
 	},
 
@@ -91,9 +88,6 @@ module.exports = {
 	 */
 	decrypt: function(ciphertext, key) {
 		if (string.isString(ciphertext) && string.isString(key)) {
-            // if empty, do nothing
-            if (ciphertext === "" || key === "") return "Must not empty !!!";
-
             // Convert string key to matrix
             let mK = [[0,0,0],[0,0,0],[0,0,0]];
             let keyDigits = key.split(" ");
@@ -102,10 +96,12 @@ module.exports = {
             while (i < 3 && k < keyDigits.length) {
                 mK[i][j] = parseInt(keyDigits[k]);
                 j++;
+
                 if (j > 2) {
                     j = 0;
                     i++;
                 }
+
                 k++;
             }
 
@@ -135,7 +131,7 @@ module.exports = {
 
             return out;
 		} else {
-			return "Must be string !!!";
+			return "INPUT ERROR";
 		}
 	}
 }

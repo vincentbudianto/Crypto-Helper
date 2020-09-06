@@ -5,8 +5,7 @@ module.exports = {
 	/**
      * Encrypts with formula : C = m * P + b (mod 26)
 	 * @param {String} plaintext
-	 * @param {Number} m
-	 * @param {Number} b
+	 * @param {String} key
 	 * @returns {String} - Ciphertext
 	 */
 	encrypt: function (plaintext, key) {
@@ -30,15 +29,14 @@ module.exports = {
 				return "No modular inverse found !!!";
 			}
 		} else {
-			return "Must be string !!!";
+			return "INPUT ERROR";
 		}
 	},
 
 	/**
      * Decrypts with formula : P = m^(-1) (C - b) (mod 26)
 	 * @param {String} ciphertext
-	 * @param {Number} m
-	 * @param {Number} b
+	 * @param {String} key
 	 * @returns {String} - Plaintext
 	 */
 	decrypt: function (ciphertext, key) {
@@ -62,7 +60,7 @@ module.exports = {
 				return "No modular inverse found !!!";
 			}
 		} else {
-			return "Must be string !!!";
+			return "INPUT ERROR";
 		}
 	}
 }

@@ -1,35 +1,27 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./Encrypt.css";
+import "./Enigma.css";
 
-let vigenere = require("../../backend/vigenere");
-let fVigenere = require("../../backend/fullVigenere");
-let aKeyVigenere = require("../../backend/autoKeyVigenere");
-let eVigenere = require("../../backend/extendedVigenere");
-let playfair = require("../../backend/playfair");
-let sEncryption = require("../../backend/superEncryption");
-let affine = require("../../backend/affine");
-let hill = require("../../backend/hill");
+let enigma = require("../../backend/enigma");
 
 const selectStyles = {
   option: (provided, state) => ({
     ...provided,
     borderRadius: "10px",
     color: "#000000",
-  })
-}
+  }),
+};
 
-const selectOptions = [
-  { value: vigenere, label: "Vigenere Standard" },
-  { value: fVigenere, label: "Full Vigenere Cipher" },
-  { value: aKeyVigenere, label: "Auto-Key Vigenere Cipher" },
-  { value: eVigenere, label: "Extended Vigenere Cipher" },
-  { value: playfair, label: "Playfair Cipher" },
-  { value: sEncryption, label: "Super Encription" },
-  { value: affine, label: "Affine Cipher" },
-  { value: hill, label: "Hill Cipher" }
-]
+const selectWheel = [
+  { value: "UKW", label: "UKW" },
+  { value: "UKW-K", label: "UKW-K" },
+  { value: "Reflector A", label: "Reflector A" },
+  { value: "Reflector B", label: "Reflector B" },
+  { value: "Reflector C", label: "Reflector C" },
+  { value: "Reflector B Thin", label: "Reflector B Thin" },
+  { value: "Reflector C Thin", label: "Reflector C Thin" },
+];
 
 const truncate = (input) => {
   return (input.length > 10) ? input.substr(0, 9) + '...' : input;
@@ -37,33 +29,16 @@ const truncate = (input) => {
 
 let fileReader;
 
-class Encrypt extends Component {
+class Enigma extends Component {
   state = {
-    method: undefined,
+    method: enigma,
     selectedFile: undefined,
     fileName: "",
     text: "",
-    key: ""
-  }
-
-  onTextChange = event => {
-    this.setState({ text: event.target.value })
-  }
-
-  onKeyChange = event => {
-    this.setState({ key: event.target.value })
-  }
-
-  onMethodChange = event => {
-    this.setState({ method: event.value })
-
-    if (event.value == vigenere || event.value == fVigenere || event.value == aKeyVigenere || event.value == eVigenere || event.value == playfair || event.value == sEncryption) {
-      document.getElementById("key-input").placeholder = "example: secret key";
-    } else if (event.value == affine) {
-      document.getElementById("key-input").placeholder = "example: 7 10";
-    } else if (event.value == hill) {
-      document.getElementById("key-input").placeholder = "example: 17 17 5 21 18 21 2 2 19";
-    }
+    key: "",
+    rotorType: "",
+    wheel: "Reflector B",
+    wiring: ""
   }
 
   // On file select (from the pop up)
@@ -74,14 +49,34 @@ class Encrypt extends Component {
     }
   }
 
+  onTextChange = event => {
+    this.setState({ text: event.target.value })
+  }
+
+  onKeyChange = event => {
+    this.setState({ key: event.target.value })
+  }
+
+  onRotorChange = event => {
+    this.setState({ rotorType: event.target.value })
+  }
+
+  onWheelChange = event => {
+    this.setState({ wheel: event.value })
+  }
+
+  onWiringChange = event => {
+    this.setState({ wiring: event.target.value })
+  }
+
   handleFileRead = (e) => {
     const content = fileReader.result;
 
-    document.getElementById('encryptedResult').innerHTML = this.state.method.decrypt(content, this.state.key);
+    document.getElementById('enigmaResult').innerHTML = this.state.method.cipher(this.state.text, this.state.key, this.state.rotorType, this.state.wheel, this.state.wiring);
     document.getElementById("modal-result").style.display = "block";
   }
 
-  handleEncrypt = async (e) => {
+  handleCipher = async (e) => {
     e.preventDefault();
 
     if (this.state.method !== undefined && this.state.key !== "") {
@@ -90,26 +85,24 @@ class Encrypt extends Component {
       if (this.state.text !== "") {
         console.log(this.state.text)
         console.log(this.state.key)
-        document.getElementById('encryptedResult').innerHTML = this.state.method.encrypt(this.state.text, this.state.key);
+        console.log(this.state.rotorType)
+        console.log(this.state.wheel)
+        console.log(this.state.wiring)
+        document.getElementById('enigmaResult').innerHTML = this.state.method.cipher(this.state.text, this.state.key, this.state.rotorType, this.state.wheel, this.state.wiring);
         document.getElementById("modal-result").style.display = "block";
       }
       else if (this.state.selectedFile !== undefined) {
         console.log(this.state.selectedFile);
         fileReader = new FileReader();
         fileReader.onloadend = this.handleFileRead;
-
-        if (this.state.method == eVigenere) {
-          fileReader.readAsArrayBuffer(this.state.selectedFile);
-        } else {
-          fileReader.readAsText(this.state.selectedFile);
-        }
+    		fileReader.readAsText(this.state.selectedFile);
       }
     }
   }
 
   download = () => {
     const element = document.createElement("a");
-    const file = new Blob([document.getElementById("encryptedResult").value], {
+    const file = new Blob([document.getElementById("enigmaResult").value], {
       type: "text/plain;charset=utf-8",
     });
 
@@ -130,7 +123,7 @@ class Encrypt extends Component {
       <React.Fragment>
         <Select
           className="method-droplist"
-          placeholder="Select encryption method"
+          placeholder="Select reflector"
           styles={selectStyles}
           theme={(theme) => ({
             ...theme,
@@ -139,38 +132,45 @@ class Encrypt extends Component {
               ...theme.colors,
               primary50: "#95e8e6",
               primary25: "#b0f1f7",
-              primary: "#b0f7f0"
+              primary: "#b0f7f0",
             }
           })}
-          options={selectOptions}
-          onChange={this.onMethodChange}
+          options={selectWheel}
+          onChange={this.onWheelChange}
+          defaultValue={{ value: "Reflector B", label: "Reflector B" }}
         />
-        <div className="wrapper-encrypt">
-          <div className="container-encrypt">
-            <form className="encrypt-form" onSubmit={this.handleEncrypt}>
+        <div className="wrapper-enigma">
+          <div className="container-enigma">
+            <form className="enigma-form" onSubmit={this.handleCipher}>
               <label>Text</label>
               <textarea id="text-input" placeholder="example: Hello World" type="text" name="text" rows="6" onChange={this.onTextChange} value={this.state.text}/>
 
               <label>Key</label>
-              <input id="key-input" placeholder="please select encryption method" type="text" name="key" onChange={this.onKeyChange} value={this.state.key}/>
+              <input id="key-input" placeholder="rotors initial position (example: A A A)" type="text" name="key" onChange={this.onKeyChange} value={this.state.key} />
+
+              <label className="rotor-input">Rotors</label>
+              <input className="rotor-input" placeholder="rotors type from left to right divided by spaces (example: I II III IV V VI VII VIII)" type="text" name="rotor" onChange={this.onRotorChange} value={this.state.rotorType} />
+
+              <label className="plug-input">Plugboard</label>
+              <input className="plug-input" placeholder="swap additional letters (example: AB GZ CD KT)" type="text" name="plugboard" onChange={this.onWiringChange} value={this.state.wiring} />
 
               <div className="button-container">
                 <input id="file-input" type="file" name="file" className="upload-button" onChange={this.onFileChange} />
                 <label htmlFor="file-input">
                   <FontAwesomeIcon icon={this.state.fileName === "" ? "file-upload" : "file"} /> &nbsp; {this.state.fileName === "" ? "Upload" : truncate(this.state.fileName)}
                 </label>
-                <button className="encrypt-button" type="submit">
-                  <FontAwesomeIcon icon="lock" /> &nbsp; Encrypt
+                <button className="enigma-button" type="submit">
+                  <FontAwesomeIcon icon="unlock" /> &nbsp; Cipher
                 </button>
               </div>
             </form>
           </div>
         </div>
-        <div id="modal-result" className="modal-encrypt">
+        <div id="modal-result" className="modal-enigma">
           <div className="modal-content-container">
             <div className="modal-content">
               <p id="message">Result</p>
-              <textarea id="encryptedResult" type="text" readOnly rows="6"></textarea>
+              <textarea id="enigmaResult" type="text" readOnly rows="6"></textarea>
               <div className="button-container">
                 <button className="download-button" onClick={this.download}>
                   <FontAwesomeIcon icon="cloud-download-alt" /> &nbsp; Download
@@ -187,4 +187,4 @@ class Encrypt extends Component {
   }
 }
 
-export default Encrypt;
+export default Enigma;

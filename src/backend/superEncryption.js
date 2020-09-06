@@ -61,7 +61,7 @@ module.exports = {
 
 			return out;
 		} else {
-			return "Must be string !!!";
+			return "INPUT ERROR";
 		}
 	},
 
@@ -92,7 +92,7 @@ module.exports = {
 
 			return out;
 		} else {
-			return "Must be string !!!";
+			return "INPUT ERROR";
 		}
 	}
 }

@@ -104,7 +104,7 @@ module.exports = {
 
 			return out.join("");
 		} else {
-			return "Must be string !!!";
+			return "INPUT ERROR";
 		}
 	},
 
@@ -141,7 +141,7 @@ module.exports = {
 
 			return out.join("");
 		} else {
-			return "Must be string !!!";
+			return "INPUT ERROR";
 		}
 	}
 }
