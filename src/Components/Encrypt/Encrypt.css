@@ -10,7 +10,7 @@
 }
 
 .method-droplist {
-  z-index: 7;
+  z-index: 6;
   margin-bottom: 15px;
   cursor: pointer;
   outline: none;
@@ -147,7 +147,7 @@ button {
   height: 100%;
   overflow: visible;
   background-color: rgb(0, 0, 0, 0.5);
-  z-index: 3;
+  z-index: 7;
 }
 
 .modal-content-container {

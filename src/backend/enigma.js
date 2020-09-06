@@ -1,6 +1,5 @@
 /* Vigenere encription & decription */
 let string = require('./util/string');
-const { not, re } = require('mathjs');
 
 module.exports = {
 	/** Get reflector positions
@@ -15,7 +14,7 @@ module.exports = {
 	 * @param {String} reflector
 	 * @returns {Array} - Array of alphabets
 	 */
-	getRefletor: function (reflector) {
+	getReflector: function (reflector) {
 		let out;
 
 		if (reflector === "UKW") {
@@ -55,15 +54,15 @@ module.exports = {
 		let notch;
 
 		if (rotorType === "I") {
-			notch = "Q";
+			notch = ["Q"];
 	    } else if (rotorType === "II") {
-			notch = "E";
+			notch = ["E"];
 	    } else if (rotorType === "III") {
-	     	notch = "V";
+	     	notch = ["V"];
 	    } else if (rotorType === "IV") {
-	      	notch = "J";
+	      	notch = ["J"];
 	    } else if (rotorType === "V") {
-	      	notch = "Z";
+	      	notch = ["Z"];
 	    } else if (rotorType === "VI") {
 	      	notch = ["M", "Z"];
 	    } else if (rotorType === "VII") {
@@ -119,27 +118,35 @@ module.exports = {
 
 		if (rotorType === "I") {
 			let secret = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+
 			res += secret.slice(x, 26) + secret.slice(0, x);
 		} else if (rotorType === "II") {
 			let secret = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
+
 			res += secret.slice(x, 26) + secret.slice(0, x);
 	    } else if (rotorType === "III") {
 			let secret = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+
 			res += secret.slice(x, 26) + secret.slice(0, x);
 	    } else if (rotorType === "IV") {
 			let secret = "ESOVPZJAYQUIRHXLNFTGKDCMWB";
+
 			res += secret.slice(x, 26) + secret.slice(0, x);
 	    } else if (rotorType === "V") {
 			let secret = "VZBRGITYUPSDNHLXAWMJQOFECK";
+
 			res += secret.slice(x, 26) + secret.slice(0, x);
 	    } else if (rotorType === "VI") {
 			let secret = "JPGVOUMFYQBENHZRDKASXLICTW";
+
 			res += secret.slice(x, 26) + secret.slice(0, x);
 	    } else if (rotorType === "VII") {
 			let secret = "NZJHGRCXMYSWBOUFAIVLPEKQDT";
+
 			res += secret.slice(x, 26) + secret.slice(0, x);
 		} else if (rotorType === "VIII") {
 			let secret = "FKQHTLXOCBJSPDZRAMEWNIUYGV";
+
 			res += secret.slice(x, 26) + secret.slice(0, x);
 		}
 
@@ -154,7 +161,7 @@ module.exports = {
 		let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		let x = alphabet.indexOf(key);
 
-		let out = key + alphabet.slice((x + 1), 26) + alphabet.slice(0, x);
+		let out = alphabet.slice(x, 26) + alphabet.slice(0, x);
 
 		return out.split("");
 	},
@@ -200,7 +207,7 @@ module.exports = {
 			key = string.removeNonAlphabet(key).slice(0, rotorType.length);
 
 			let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-			let reflector = this.getRefletor(wheel);
+			let reflector = this.getReflector(wheel);
 			let plugboard = this.getPlugboard(wiring);
 			let notch = [];
 			let rotor = [];
@@ -213,80 +220,103 @@ module.exports = {
 				secretkey.push(this.getSecretkey(key[i]));
 			}
 
-			// for (let j = 0; j < plaintext.length; j++) {
-			for (let j = 0; j < 1; j++) {
+			for (let j = 0; j < plaintext.length; j++) {
 				// Shift last rotor
-				let x = rotor[rotor.length - 1].shift();
-				let y = secretkey[secretkey.length - 1].shift();
+				let a = rotor[rotor.length - 1].shift();
+				let b = secretkey[secretkey.length - 1].shift();
 
-				rotor[rotor.length - 1].push(x);
-				secretkey[secretkey.length - 1].push(y);
+				// Check notch
+				if (notch[rotor.length - 1].includes(b)) {
+					let turn = true;
+
+					for (let m = (rotor.length - 1); m > 0; m--) {
+						if (turn) {
+							console.log("\nnotch :", m + 1, '-->', notch[m]);
+							console.log("letter", (j + 1));
+							console.log("before key position :", secretkey[0][0], secretkey[1][0], secretkey[2][0]);
+
+							let c = rotor[m - 1].shift();
+							let d = secretkey[m - 1].shift();
+
+							rotor[m - 1].push(c);
+							secretkey[m - 1].push(d);
+
+							console.log("after key position :", secretkey[0][0], secretkey[1][0], secretkey[2][0]);
+
+							if (!notch[m - 1].includes(d)) {
+								turn = false;
+							}
+						}
+					}
+				}
+
+				rotor[rotor.length - 1].push(a);
+				secretkey[secretkey.length - 1].push(b);
 
 				let char = plaintext[j];
 
-				console.log("Input :", char);
+				// console.log("Input :", char);
 
 				// Plugboard substitution
 				if (char != plugboard[alphabet.indexOf(char)]) {
 					char = plugboard[alphabet.indexOf(char)];
 				}
 
-				console.log("\nPlugboard 1");
-				console.log("->", char);
+				// console.log("\nPlugboard 1");
+				// console.log("->", char);
 
 				// To reflector
-				console.log("\nTo Reflector");
+				// console.log("\nTo fast rotor");
 				char = secretkey[secretkey.length - 1][alphabet.indexOf(char)];
-				console.log("-->", char);
+				// console.log(alphabet.indexOf(char), "-->", char);
 				char = rotor[rotor.length - 1][secretkey[secretkey.length - 1].indexOf(char)];
-				console.log("-->", char);
+				// console.log(secretkey[secretkey.length - 1].indexOf(char), "-->", char);
 
-				console.log("\nTo rotor 2")
-
+				// console.log("\nTo rotor (fast -> slow)")
 				for (let k = (rotor.length - 2); k >= 0; k--) {
-					console.log("iteration :", k);
+					// console.log("iteration :", k);
 					char = secretkey[k][secretkey[k + 1].indexOf(char)];
-					console.log("--->", char);
+					// console.log(secretkey[k + 1].indexOf(char), "--->", char);
 					char = rotor[k][secretkey[k].indexOf(char)];
-					console.log("--->", char)
+					// console.log(secretkey[k].indexOf(char), "--->", char)
 				}
 
 				// Reflector
-				console.log("\nReflector");
+				// console.log("\nReflector");
 				char = reflector[string.mod((alphabet.indexOf(char) - string.toNumbers(secretkey[0][0])[0]), 26)];
-				console.log("---->", char);
+				// console.log(string.mod((alphabet.indexOf(char) - string.toNumbers(secretkey[0][0])[0]), 26), "---->", char);
 
 				// From reflector
-				console.log("\nFrom Reflector");
-
-				console.log("rotor", rotor[0]);
-				console.log("n :", secretkey[0].indexOf(char) - string.toNumbers(secretkey[0][0])[0]);
-				char = rotor[0][string.mod((secretkey[0].indexOf(char) - string.toNumbers(secretkey[0][0])[0]), 26)];
-				console.log("char :", char);
+				// console.log("\nTo slow rotor");
+				char = secretkey[0][alphabet.indexOf(char)];
+				// console.log(alphabet.indexOf(char), "--->", char);
 				char = secretkey[0][rotor[0].indexOf(char)];
-				console.log(rotor[0].indexOf(char));
-				console.log(char);
+				// console.log(rotor[0].indexOf(char), "--->", char);
 
-
-				for (let l = 1; l > (rotor.length - 1); l++) {
+				// console.log("\nTo rotor (slow -> fast)");
+				for (let l = 1; l < rotor.length; l++) {
+					// console.log("iteration :", l);
+					// console.log("secretkey[l - 1] :", secretkey[l - 1]);
+					char = secretkey[l][secretkey[l - 1].indexOf(char)];
+					// console.log(secretkey[l - 1].indexOf(char), "-->", char);
+					// console.log("secretkey[l] :", secretkey[l]);
+					char = secretkey[l][rotor[l].indexOf(char)];
+					// console.log(secretkey[l].indexOf(char), "-->", char)
 				}
 
-				// // Plugboard substitution
-				// if (char != plugboard[plugboard.indexOf(char)]) {
-				// 	char = plugboard[plugboard.indexOf(char)];
-				// }
+				// console.log("\nEnter ETW");
+				char = alphabet[secretkey[rotor.length - 1].indexOf(char)];
+				// console.log(secretkey[rotor.length - 1].indexOf(char), "-->", char)
 
-				// out.push(char)
+				// Plugboard substitution
+				if (char != plugboard[plugboard.indexOf(char)]) {
+					char = plugboard[plugboard.indexOf(char)];
+				}
 
-				// // Check previous rotors for change
-				// for (let m = (rotor.length - 1); m > 0; m--) {
-				// 	if (rotor[m][0] == notch[m]) {
-				// 		x = rotor[m - 1].shift();
-				// 		y = secretkey[m - 1].shift();
-				// 		secretkey[m - 1].push(y);
-				// 		rotor[m - 1].push(x);
-				// 	}
-				// }
+				// console.log("\nPlugboard 2");
+				// console.log("->", char);
+
+				out.push(char)
 			}
 
 			// console.log("plaintext :", plaintext);

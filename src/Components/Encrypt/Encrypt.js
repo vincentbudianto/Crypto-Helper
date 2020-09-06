@@ -79,7 +79,9 @@ class Encrypt extends Component {
 
   handleFileRead = (e) => {
     const content = fileReader.result;
-    console.log(content);
+
+    document.getElementById('encryptedResult').innerHTML = this.state.method.decrypt(content, this.state.key);
+    document.getElementById("modal-result").style.display = "block";
   }
 
   handleEncrypt = async (e) => {
@@ -93,16 +95,17 @@ class Encrypt extends Component {
         console.log(this.state.key)
         document.getElementById('encryptedResult').innerHTML = this.state.method.encrypt(this.state.text, this.state.key);
         document.getElementById("modal-result").style.display = "block";
-        // alert(this.state.method.encrypt(this.state.text, this.state.key)) // Encryption result
-        /**
-         * TODO : Connect to modal
-         */
       }
       else if (this.state.selectedFile !== undefined) {
         console.log(this.state.selectedFile);
         fileReader = new FileReader();
         fileReader.onloadend = this.handleFileRead;
-        fileReader.readAsArrayBuffer(this.state.selectedFile);
+
+        if (this.state.method == eVigenere) {
+          fileReader.readAsArrayBuffer(this.state.selectedFile);
+        } else {
+          fileReader.readAsText(this.state.selectedFile);
+        }
       }
     }
   }

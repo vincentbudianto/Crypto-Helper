@@ -79,7 +79,9 @@ class Decrypt extends Component {
 
   handleFileRead = (e) => {
     const content = fileReader.result;
-    console.log(content);
+
+    document.getElementById('decryptedResult').innerHTML = this.state.method.decrypt(content, this.state.key);
+    document.getElementById("modal-result").style.display = "block";
   }
 
   handleDecrypt = async (e) => {
@@ -92,16 +94,17 @@ class Decrypt extends Component {
         console.log(this.state.key)
         document.getElementById('decryptedResult').innerHTML = this.state.method.decrypt(this.state.text, this.state.key);
         document.getElementById("modal-result").style.display = "block";
-        // alert(this.state.method.decrypt(this.state.text, this.state.key)) // Decryption result
-        /**
-         * TODO : Connect to modal
-         */
       }
       else if (this.state.selectedFile !== undefined) {
         console.log(this.state.selectedFile);
         fileReader = new FileReader();
         fileReader.onloadend = this.handleFileRead;
-        fileReader.readAsArrayBuffer(this.state.selectedFile);
+
+        if (this.state.method == eVigenere) {
+          fileReader.readAsArrayBuffer(this.state.selectedFile);
+        } else {
+          fileReader.readAsText(this.state.selectedFile);
+        }
       }
     }
   }
