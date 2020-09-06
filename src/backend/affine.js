@@ -9,8 +9,12 @@ module.exports = {
 	 * @param {Number} b
 	 * @returns {String} - Ciphertext
 	 */
-	encrypt: function (plaintext, m, b) {
-		if (string.isString(plaintext)) {
+	encrypt: function (plaintext, key) {
+		if (string.isString(plaintext) && string.isString(key)) {
+			let keyDigits = key.split(" ");
+			let m = parseInt(keyDigits[0]);
+			let b = parseInt(keyDigits[1]);
+
 			if (!isNaN(string.modInverse(m, 26))) {
             	// Convert string to order number
 				let P = string.toNumbers(plaintext);
@@ -37,8 +41,12 @@ module.exports = {
 	 * @param {Number} b
 	 * @returns {String} - Plaintext
 	 */
-	decrypt: function (ciphertext, m, b) {
-		if (string.isString(ciphertext)) {
+	decrypt: function (ciphertext, key) {
+		if (string.isString(ciphertext) && string.isString(key)) {
+			let keyDigits = key.split(" ");
+			let m = parseInt(keyDigits[0]);
+			let b = parseInt(keyDigits[1]);
+
 			if (!isNaN(string.modInverse(m, 26))) {
             	// Convert string to order number
 				let C = string.toNumbers(ciphertext);

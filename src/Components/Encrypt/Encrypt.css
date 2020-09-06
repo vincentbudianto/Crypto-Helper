@@ -9,8 +9,8 @@
   justify-content: center;
 }
 
-.droplist {
-  z-index: 2;
+.method-droplist {
+  z-index: 7;
   margin-bottom: 15px;
   cursor: pointer;
   outline: none;

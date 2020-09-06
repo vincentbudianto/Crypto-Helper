@@ -3,13 +3,14 @@ import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Encrypt.css";
 
-let affine = require("../../backend/affine");
-let aKVig = require("../../backend/autoKeyVigenere");
-let eVig = require("../../backend/extendedVigenere");
-let fVig = require("../../backend/fullVigenere");
+let vigenere = require("../../backend/vigenere");
+let fVigenere = require("../../backend/fullVigenere");
+let aKeyVigenere = require("../../backend/autoKeyVigenere");
+let eVigenere = require("../../backend/extendedVigenere");
 let playfair = require("../../backend/playfair");
-let sEnc = require("../../backend/superEncryption");
-let Vig = require("../../backend/vigenere");
+let sEncryption = require("../../backend/superEncryption");
+let affine = require("../../backend/affine");
+let hill = require("../../backend/hill");
 
 const selectStyles = {
   option: (provided, state) => ({
@@ -20,15 +21,15 @@ const selectStyles = {
 };
 
 const selectOptions = [
-  { value: Vig, label: "Vigenere Standard" },
-  { value: fVig, label: "Full Vigenere Cipher" },
-  { value: aKVig, label: "Auto-Key Vigenere Cipher" },
-  { value: eVig, label: "Extended Vigenere Cipher" },
+  { value: vigenere, label: "Vigenere Standard" },
+  { value: fVigenere, label: "Full Vigenere Cipher" },
+  { value: aKeyVigenere, label: "Auto-Key Vigenere Cipher" },
+  { value: eVigenere, label: "Extended Vigenere Cipher" },
   { value: playfair, label: "Playfair Cipher" },
-  { value: sEnc, label: "Super Encription" },
+  { value: sEncryption, label: "Super Encription" },
   { value: affine, label: "Affine Cipher" },
-  { value: "Hill Cipher", label: "Hill Cipher" },
-  { value: "Enigma Cipher", label: "Enigma Cipher" }
+  { value: hill, label: "Hill Cipher" },
+  { value: "Enigma Cipher", label: "Enigma Cipher" },
 ];
 
 const truncate = (input) => {
@@ -56,8 +57,15 @@ class Encrypt extends Component {
 
   onMethodChange = event => {
     // Update the state
-    console.log(event)
     this.setState({ method: event.value })
+
+    if (event.value == vigenere || event.value == fVigenere || event.value == aKeyVigenere || event.value == eVigenere || event.value == playfair || event.value == sEncryption) {
+      document.getElementById("key-input").placeholder = "example: secret key";
+    } else if (event.value == affine) {
+      document.getElementById("key-input").placeholder = "example: 7 10";
+    } else if (event.value == hill) {
+      document.getElementById("key-input").placeholder = "example: 17 17 5 21 18 21 2 2 19";
+    }
   }
 
   // On file select (from the pop up)
@@ -121,7 +129,7 @@ class Encrypt extends Component {
     return (
       <React.Fragment>
         <Select
-          className="droplist"
+          className="method-droplist"
           placeholder="Select encryption method"
           styles={selectStyles}
           theme={(theme) => ({
@@ -141,10 +149,10 @@ class Encrypt extends Component {
           <div className="container-encrypt">
             <form className="encrypt-form" onSubmit={this.handleEncrypt}>
               <label>Text</label>
-              <textarea id="text-input" type="text" name="text" rows="6" onChange={this.onTextChange} value={this.state.text}/>
+              <textarea id="text-input" placeholder="example: Hello World" type="text" name="text" rows="6" onChange={this.onTextChange} value={this.state.text}/>
 
               <label>Key</label>
-              <input id="key-input" type="text" name="key" onChange={this.onKeyChange} value={this.state.key}/>
+              <input id="key-input" placeholder="please select encryption method" type="text" name="key" onChange={this.onKeyChange} value={this.state.key}/>
               <span id="false-key-msg" className="input-message"></span>
               <div className="button-container">
                 <input id="file-input" type="file" name="file" className="upload-button" onChange={this.onFileChange} />

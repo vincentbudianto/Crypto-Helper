@@ -7,13 +7,14 @@ let playfair = require('./playfair')
 let sEncryption = require('./superEncryption')
 let affine = require('./affine')
 let hill = require('./hill')
+let enigma = require("./enigma")
 let math = require('mathjs')
 
 // console.log(string.removeNonAlphabet("aaSSnana78&&"));
 // console.log(string.isString("aaSSnana78&&"));
-console.log(string.toNumbers("aaSSnana78&&"));
-console.log(string.mod(-939 * 17, 26));
-console.log(string.modInverse(-939, 26));
+// console.log(string.toNumbers("aaSSnana78&&"));
+// console.log(string.mod(-939 * 17, 26));
+// console.log(string.modInverse(-939, 26));
 // console.log(string.isString(77));
 // console.log("Vigenere :");
 // console.log(vigenere.encrypt("I will find you", "C"));
@@ -38,16 +39,18 @@ console.log(string.modInverse(-939, 26));
 //     187, 105, 187, 173, 189,
 //     194, 175, 175
 //   ], "INDO"));
-console.log("\nPlayfair :");
-console.log(playfair.encrypt("temui ibu nanti malam", "JALAN GANESHA SEPULUH"));
-console.log(playfair.decrypt("ZB RS FY KU PG LG RK VS NL QV", "JALAN GANESHA SEPULUH"));
-console.log("\nSuper Encryption :");
-console.log(sEncryption.encrypt("temui ibu nanti malam", "ABCDEFGHIJ"));
-console.log(sEncryption.decrypt("TNNQSFHUGSOBKTSXVPSSMJESS", "ABCDEFGHIJ"));
-console.log("\nAffine :");
-console.log(affine.encrypt("kripto", 7, 10));
-console.log(affine.decrypt("CZOLNE", 7, 10));
-// console.log([[17, 17, 5],[21, 18, 21],[2, 2, 19]]);
-// console.log(hill.modMatrixInverse([[17, 17, 5],[21, 18, 21],[2, 2, 19]], 26));
-console.log(hill.encrypt("paymoremoney", "17 17 5 21 18 21 2 2 19"))
-console.log(hill.decrypt("LNSHDLEWMTRW", "17 17 5 21 18 21 2 2 19"))
+// console.log("\nPlayfair :");
+// console.log(playfair.encrypt("temui ibu nanti malam", "JALAN GANESHA SEPULUH"));
+// console.log(playfair.decrypt("ZB RS FY KU PG LG RK VS NL QV", "JALAN GANESHA SEPULUH"));
+// console.log("\nSuper Encryption :");
+// console.log(sEncryption.encrypt("temui ibu nanti malam", "ABCDEFGHIJ"));
+// console.log(sEncryption.decrypt("TNNQSFHUGSOBKTSXVPSSMJESS", "ABCDEFGHIJ"));
+// console.log("\nAffine :");
+// console.log(affine.encrypt("kripto asik", "7 10"));
+// console.log(affine.decrypt("CZOLNEKGOC", "7 10"));
+// console.log("\nHill :");
+// console.log(hill.encrypt("paymoremoney", "17 17 5 21 18 21 2 2 19"))
+// console.log(hill.decrypt("LNSHDLEWMTRW", "17 17 5 21 18 21 2 2 19"))
+console.log("\nEnigma :");
+console.log(enigma.encrypt("aaaaa", "W A A A", "III|II|I", "Reflector B", "AB"))
+// console.log(enigma.decrypt("LNSHDLEWMTRW", "A A A A"))

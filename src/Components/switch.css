@@ -3,7 +3,7 @@
   top: 30px;
   right: -30px;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 9;
 }
 
 #hide-checkbox {
