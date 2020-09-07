@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Crypto-Helper/static/css/main.1593b777.chunk.css",
-    "main.js": "/Crypto-Helper/static/js/main.7aabb00c.chunk.js",
-    "main.js.map": "/Crypto-Helper/static/js/main.7aabb00c.chunk.js.map",
+    "main.js": "/Crypto-Helper/static/js/main.58cbe66e.chunk.js",
+    "main.js.map": "/Crypto-Helper/static/js/main.58cbe66e.chunk.js.map",
     "runtime-main.js": "/Crypto-Helper/static/js/runtime-main.48a7c6ad.js",
     "runtime-main.js.map": "/Crypto-Helper/static/js/runtime-main.48a7c6ad.js.map",
     "static/js/2.6bef8c2e.chunk.js": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js",
     "static/js/2.6bef8c2e.chunk.js.map": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js.map",
     "index.html": "/Crypto-Helper/index.html",
-    "precache-manifest.8bea83a3ff297da1738e5b7e4b69e458.js": "/Crypto-Helper/precache-manifest.8bea83a3ff297da1738e5b7e4b69e458.js",
+    "precache-manifest.ae4c2fde6004456590f27550f6957be0.js": "/Crypto-Helper/precache-manifest.ae4c2fde6004456590f27550f6957be0.js",
     "service-worker.js": "/Crypto-Helper/service-worker.js",
     "static/css/main.1593b777.chunk.css.map": "/Crypto-Helper/static/css/main.1593b777.chunk.css.map",
     "static/js/2.6bef8c2e.chunk.js.LICENSE.txt": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.48a7c6ad.js",
     "static/js/2.6bef8c2e.chunk.js",
     "static/css/main.1593b777.chunk.css",
-    "static/js/main.7aabb00c.chunk.js"
+    "static/js/main.58cbe66e.chunk.js"
   ]
 }
