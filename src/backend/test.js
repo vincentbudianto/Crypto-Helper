@@ -9,7 +9,8 @@ let affine = require('./affine')
 let hill = require('./hill')
 let enigma = require("./enigma")
 
-console.log("Vigenere :");
+console.log("<<<<<< CIPHER ALGORITHM TESTING >>>>>>");
+console.log("\nVigenere :");
 console.log(vigenere.encrypt("I will find you", "C"));
 console.log(vigenere.decrypt("KYKNNHKPFAQW", "C"));
 console.log("\nFull Vigenere :");
@@ -45,5 +46,5 @@ console.log("\nHill :");
 console.log(hill.encrypt("kriptografika", "17 17 5 21 18 21 2 2 19"))
 console.log(hill.decrypt("XMKE#?#MSTLUMGO", "17 17 5 21 18 21 2 2 19"))
 console.log("\nEnigma :");
-console.log(enigma.cipher("Halo Apa kabar", "A A A", "I II III", "Reflector B", ""))
-console.log(enigma.cipher("IDBMOUCZLKKL", "A A A", "I II III", "Reflector B", ""))
+console.log(enigma.cipher("Halo Apa kabar kalian semua apakah baik baik saja", "ABCDEFGH", "I II III IV V VI VII VIII", "Reflector B", ""))
+console.log(enigma.cipher("XBEJNSYZDHJLSGZKYPBZLCIVAPHIZOGRYDSVBTNTU", "ABCDEFGH", "I II III IV V VI VII VIII", "Reflector B", ""))

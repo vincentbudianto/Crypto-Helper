@@ -74,6 +74,7 @@ dengan spesifikasi sebagai berikut:
 
 ## Sources
 • Theme switch button created by [Raunaq Chawchan](https://codepen.io/_Raunaq_)
+• Icon and logo from [pngio](https://pngio.com/images/png-a1742084.html)
 
 <p align="center">
     <b>

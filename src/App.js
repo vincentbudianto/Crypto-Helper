@@ -57,7 +57,7 @@ function App() {
         <GlobalStyles />
         <Switch theme={theme} toggleTheme={toggleTheme} />
         <div>
-          <BrowserRouter>
+          <BrowserRouter basename="/Crypto-Helper">
             <Router />
           </BrowserRouter>
         </div>

@@ -231,17 +231,11 @@ module.exports = {
 
 					for (let m = (rotor.length - 1); m > 0; m--) {
 						if (turn) {
-							// console.log("\nnotch :", m + 1, '-->', notch[m]);
-							// console.log("letter", (j + 1));
-							// console.log("before key position :", secretkey[0][0], secretkey[1][0], secretkey[2][0]);
-
 							let c = rotor[m - 1].shift();
 							let d = secretkey[m - 1].shift();
 
 							rotor[m - 1].push(c);
 							secretkey[m - 1].push(d);
-
-							// console.log("after key position :", secretkey[0][0], secretkey[1][0], secretkey[2][0]);
 
 							if (!notch[m - 1].includes(d)) {
 								turn = false;
@@ -255,80 +249,42 @@ module.exports = {
 
 				let char = plaintext[j];
 
-				// console.log("Input :", char);
-
 				// Plugboard substitution
 				if (char != plugboard[alphabet.indexOf(char)]) {
 					char = plugboard[alphabet.indexOf(char)];
 				}
 
-				// console.log("\nPlugboard 1");
-				// console.log("->", char);
-
 				// To reflector
-				// console.log("\nTo fast rotor");
 				char = secretkey[secretkey.length - 1][alphabet.indexOf(char)];
-				// console.log(alphabet.indexOf(char), "-->", char);
 				char = rotor[rotor.length - 1][secretkey[secretkey.length - 1].indexOf(char)];
-				// console.log(secretkey[secretkey.length - 1].indexOf(char), "-->", char);
 
-				// console.log("\nTo rotor (fast -> slow)")
 				for (let k = (rotor.length - 2); k >= 0; k--) {
-					// console.log("iteration :", k);
 					char = secretkey[k][secretkey[k + 1].indexOf(char)];
-					// console.log(secretkey[k + 1].indexOf(char), "--->", char);
 					char = rotor[k][secretkey[k].indexOf(char)];
-					// console.log(secretkey[k].indexOf(char), "--->", char)
 				}
 
 				// Reflector
-				// console.log("\nReflector");
 				char = reflector[string.mod((alphabet.indexOf(char) - string.toNumbers(secretkey[0][0])[0]), 26)];
-				// console.log(string.mod((alphabet.indexOf(char) - string.toNumbers(secretkey[0][0])[0]), 26), "---->", char);
 
 				// From reflector
-				// console.log("\nTo slow rotor");
 				char = secretkey[0][alphabet.indexOf(char)];
-				// console.log(alphabet.indexOf(char), "--->", char);
 				char = secretkey[0][rotor[0].indexOf(char)];
-				// console.log(rotor[0].indexOf(char), "--->", char);
 
-				// console.log("\nTo rotor (slow -> fast)");
 				for (let l = 1; l < rotor.length; l++) {
-					// console.log("iteration :", l);
-					// console.log("secretkey[l - 1] :", secretkey[l - 1]);
 					char = secretkey[l][secretkey[l - 1].indexOf(char)];
-					// console.log(secretkey[l - 1].indexOf(char), "-->", char);
-					// console.log("secretkey[l] :", secretkey[l]);
 					char = secretkey[l][rotor[l].indexOf(char)];
-					// console.log(secretkey[l].indexOf(char), "-->", char)
 				}
 
-				// console.log("\nEnter ETW");
+				// ETW
 				char = alphabet[secretkey[rotor.length - 1].indexOf(char)];
-				// console.log(secretkey[rotor.length - 1].indexOf(char), "-->", char)
 
 				// Plugboard substitution
 				if (char != plugboard[plugboard.indexOf(char)]) {
 					char = plugboard[plugboard.indexOf(char)];
 				}
 
-				// console.log("\nPlugboard 2");
-				// console.log("->", char);
-
 				out.push(char)
 			}
-
-			// console.log("plaintext :", plaintext);
-			// console.log("key :", key);
-			// console.log("secretkey :", secretkey);
-			// console.log("rotorType :", rotorType);
-	        // console.log("notch :", notch);
-			// console.log("rotor :", rotor);
-			// console.log("wheel :", wheel);
-			// console.log("reflector :", reflector);
-	        // console.log("wiring :", wiring);
-			// console.log("plugboard :", plugboard);
 
 			return out.join('');
 		} else {
