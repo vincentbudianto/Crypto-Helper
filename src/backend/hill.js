@@ -17,7 +17,7 @@ module.exports = {
 
         let invDet = string.modInverse(determinant, n);
         let invMat = math.inv(matrix);
-        
+
         invMat = math.multiply(determinant, invMat);
         invMat = math.round(invMat)
         invMat = math.multiply(invDet, invMat);
@@ -72,13 +72,13 @@ module.exports = {
                 out += string.toAlphabetHill(mC);
                 i+=3;
             }
-            
+
             return out;
 		} else {
             return "INPUT ERROR";
 		}
 	},
-    
+
 	/**
      * Decrypts with formula : mP = mKinv * mP (mod 26)
      * with mC and mP is a 1x3 matrix and mKinv is 3x3 matrix inverse of key
@@ -92,44 +92,44 @@ module.exports = {
             let mK = [[0,0,0],[0,0,0],[0,0,0]];
             let keyDigits = key.split(" ");
             let i = 0, j = 0, k = 0;
-            
+
             while (i < 3 && k < keyDigits.length) {
                 mK[i][j] = parseInt(keyDigits[k]);
                 j++;
-                
+
                 if (j > 2) {
                     j = 0;
                     i++;
                 }
-                
+
                 k++;
             }
-            
+
             // Find key inverse
             let mKinv = this.modMatrixInverse(mK, 28)
-            
+
             // Convert ciphertext to numbers
             ciphertext = string.toNumbersHill(ciphertext);
-            
+
             let mC, mP = [0, 0, 0];
             let out = "";
-            
+
             // Multiply mK to plaintext
             i=0;
-            
+
             while (i < ciphertext.length) {
                 mC = ciphertext.slice(i, i+3);
-                
+
                 while (mC.length < 3) mC.push(26);
-                
+
                 mP = math.multiply(mKinv, mC);
                 mP = math.round(mP);
                 mP = math.mod(mP, 28);
-                
+
                 out += string.toAlphabetHill(mP);
                 i+=3;
             }
-            
+
             out = string.removeNonAlphabet(out);
             return out;
 		} else {

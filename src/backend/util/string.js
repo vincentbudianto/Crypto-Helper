@@ -97,15 +97,40 @@ module.exports = {
     },
 
     /**
+     * Converts all number order in alphabet to alphabet with ? -> 27 (e.g. 10 -> J)
+     * @param {Array} input - Array of order numbers
+     * @returns {String}
+     */
+    toNumbersHill: function (input) {
+        input = this.removeNonAlphabetHill(input);
+
+        let out = [];
+
+        for (let i = 0; i < input.length; i++) {
+            if (input[i] === "?") {
+                out.push(26);
+            } else if (input[i] === "#") {
+                out.push(27);
+            } else {
+                out.push(input.charCodeAt(i) - a.charCodeAt(0));
+            }
+        }
+
+        return out;
+    },
+
+    /**
      * Converts all alphabet to ASCII
      * @param {String} input - All characters must be upper case alphabet
      * @returns {Array} - Array of order numbers
      */
     toASCII: function(input) {
         let out = [];
+
         for (var i = 0; i < input.length; i++) {
             out.push(input.charCodeAt(i));
         }
+
         return out;
     },
 
@@ -143,29 +168,6 @@ module.exports = {
                 out += "#";
             } else {
                 out += String.fromCharCode(input[i] + a.charCodeAt(0));
-            }
-        }
-
-        return out;
-    },
-
-    /**
-     * Converts all number order in alphabet to alphabet with ? -> 27 (e.g. 10 -> J)
-     * @param {Array} input - Array of order numbers
-     * @returns {String}
-     */
-    toNumbersHill: function(input) {
-        input = this.removeNonAlphabetHill(input);
-
-        let out = [];
-
-        for (let i = 0; i < input.length; i++) {
-            if (input[i] === "?") {
-                out.push(26);
-            } else if (input[i] === "#") {
-                out.push(27);
-            } else {
-                out.push(input.charCodeAt(i) - a.charCodeAt(0));
             }
         }
 
