@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "../../logo.svg";
+import logo from "../../logo.png";
 import "./Title.css";
 
 class Title extends Component {
@@ -8,7 +8,7 @@ class Title extends Component {
       <React.Fragment>
         <div className="wrapper-title">
           <div>
-            <img src={logo} className="App-logo-spin" alt="logo" width="30%" />
+            <img src={logo} className="logo" alt="logo" width="40%" />
           </div>
 
           <div className="text-title1">Crypto Helper</div>

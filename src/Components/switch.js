@@ -2,9 +2,6 @@ import React from "react";
 import { func, string } from "prop-types";
 import "./switch.css";
 
-// import { ReactComponent as MoonIcon } from "icons/moon.svg";
-// import { ReactComponent as SunIcon } from "icons/sun.svg";
-
 const Switch = ({ theme, toggleTheme }) => {
   const isLight = theme === "light";
 
