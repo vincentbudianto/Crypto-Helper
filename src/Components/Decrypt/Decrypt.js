@@ -41,6 +41,7 @@ class Decrypt extends Component {
   state = {
     method: undefined,
     selectedFile: undefined,
+    fileType: "",
     fileName: "",
     text: "",
     key: ""
@@ -71,14 +72,39 @@ class Decrypt extends Component {
     if (event.target.files[0] != undefined) {
       this.setState({ selectedFile: event.target.files[0] });
       this.setState({ fileName: event.target.files[0].name })
+      this.setState({ fileType: event.target.files[0].type });
     }
   }
 
   handleFileRead = (e) => {
     const content = fileReader.result;
 
-    document.getElementById('decryptedResult').innerHTML = this.state.method.decrypt(content, this.state.key);
-    document.getElementById("modal-result").style.display = "block";
+    if (this.state.fileType === "text/plain") {
+      document.getElementById('encryptedResult').innerHTML = this.state.method.decrypt(content, this.state.key);
+      document.getElementById("modal-result").style.display = "block";
+    } else {
+      console.log(content);
+      const typedArray = new Uint8Array(content);
+      const array = [...typedArray];
+      var decrypted = this.state.method.decrypt(array, this.state.key);
+      const decryptedBuffer = new Uint8Array(decrypted);
+      console.log(decryptedBuffer);
+      this.downloadExtended(decryptedBuffer);
+    }
+  }
+
+  downloadExtended = (content) => {
+    const element = document.createElement("a");
+    const file = new Blob([content], {
+      type: this.state.fileType,
+    });
+
+    element.className = "download-file";
+    element.href = URL.createObjectURL(file);
+    element.download = "Decrypted-" + this.state.fileName;
+    document.body.appendChild(element);
+    element.click();
+    element.remove();
   }
 
   handleDecrypt = async (e) => {

@@ -45,12 +45,16 @@ let math = require('mathjs')
 // console.log("\nSuper Encryption :");
 // console.log(sEncryption.encrypt("temui ibu nanti malam", "ABCDEFGHIJ"));
 // console.log(sEncryption.decrypt("TNNQSFHUGSOBKTSXVPSSMJESS", "ABCDEFGHIJ"));
-// console.log("\nAffine :");
-// console.log(affine.encrypt("kripto asik", "7 10"));
-// console.log(affine.decrypt("CZOLNEKGOC", "7 10"));
-// console.log("\nHill :");
-// console.log(hill.encrypt("paymoremoney", "17 17 5 21 18 21 2 2 19"))
-// console.log(hill.decrypt("LNSHDLEWMTRW", "17 17 5 21 18 21 2 2 19"))
-console.log("\nEnigma :");
-console.log(enigma.cipher("Halo Apa kabar", "A A A", "I|II|III", "Reflector B", ""))
-console.log(enigma.cipher("IDBMOUCZLKKL", "A A A", "I|II|III", "Reflector B", ""))
+console.log("\nAffine :");
+let key = Math.floor(Math.random() * 200 + 1).toString() + " " + Math.floor(Math.random() * 200 + 1).toString();
+console.log(affine.encrypt("kripto asik", "7 10"));
+console.log(affine.decrypt("CZOLNEKGOC", "7 10"));
+console.log("\nHill :");
+key = Math.floor(Math.random() * 200 + 1).toString();
+for (let i = 0; i < 8; i++) key += " " + Math.floor(Math.random() * 200 + 1).toString();
+console.log(string.modInverse(76, 26))
+console.log(hill.encrypt("nununya", "17 17 5 21 18 21 2 2 19"))
+console.log(hill.decrypt("CWBFOCAAA", "17 17 5 21 18 21 2 2 19"))
+// console.log("\nEnigma :");
+// console.log(enigma.cipher("Halo Apa kabar", "A A A", "I|II|III", "Reflector B", ""))
+// console.log(enigma.cipher("IDBMOUCZLKKL", "A A A", "I|II|III", "Reflector B", ""))
