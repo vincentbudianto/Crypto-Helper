@@ -10,12 +10,6 @@ let hill = require('./hill')
 let enigma = require("./enigma")
 let math = require('mathjs')
 
-// console.log(string.removeNonAlphabet("aaSSnana78&&"));
-// console.log(string.isString("aaSSnana78&&"));
-// console.log(string.toNumbers("aaSSnana78&&"));
-// console.log(string.mod(-939 * 17, 26));
-// console.log(string.modInverse(-939, 26));
-// console.log(string.isString(77));
 // console.log("Vigenere :");
 // console.log(vigenere.encrypt("I will find you", "C"));
 // console.log(vigenere.decrypt("KYKNNHKPFAQW", "C"));
@@ -44,17 +38,13 @@ let math = require('mathjs')
 // console.log(playfair.decrypt("ZB RS FY KU PG LG RK VS NL QV", "JALAN GANESHA SEPULUH"));
 // console.log("\nSuper Encryption :");
 // console.log(sEncryption.encrypt("temui ibu nanti malam", "ABCDEFGHIJ"));
-// console.log(sEncryption.decrypt("TNNQSFHUGSOBKTSXVPSSMJESS", "ABCDEFGHIJ"));
-console.log("\nAffine :");
-let key = Math.floor(Math.random() * 200 + 1).toString() + " " + Math.floor(Math.random() * 200 + 1).toString();
-console.log(affine.encrypt("kripto asik", "7 10"));
-console.log(affine.decrypt("CZOLNEKGOC", "7 10"));
+// console.log(sEncryption.decrypt("TNNQ?FHUG?OBKT?XVP??MJE??", "ABCDEFGHIJ"));
+// console.log("\nAffine :");
+// console.log(affine.encrypt("kripto asik", "7 10"));
+// console.log(affine.decrypt("CZOLNEKGOC", "7 10"));
 console.log("\nHill :");
-key = Math.floor(Math.random() * 200 + 1).toString();
-for (let i = 0; i < 8; i++) key += " " + Math.floor(Math.random() * 200 + 1).toString();
-console.log(string.modInverse(76, 26))
-console.log(hill.encrypt("nununya", "17 17 5 21 18 21 2 2 19"))
-console.log(hill.decrypt("CWBFOCAAA", "17 17 5 21 18 21 2 2 19"))
+console.log(hill.encrypt("kriptografikk", "17 17 5 21 18 21 2 2 19"))
+console.log(hill.decrypt("FIYYPWSYP", "17 17 5 21 18 21 2 2 19"))
 // console.log("\nEnigma :");
 // console.log(enigma.cipher("Halo Apa kabar", "A A A", "I|II|III", "Reflector B", ""))
 // console.log(enigma.cipher("IDBMOUCZLKKL", "A A A", "I|II|III", "Reflector B", ""))

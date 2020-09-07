@@ -72,7 +72,8 @@ class Enigma extends Component {
   handleFileRead = (e) => {
     const content = fileReader.result;
 
-    document.getElementById('enigmaResult').innerHTML = this.state.method.cipher(this.state.text, this.state.key, this.state.rotorType, this.state.wheel, this.state.wiring);
+    document.getElementById('plaintextResult').innerHTML = content;
+    document.getElementById('ciphertextResult').innerHTML = this.state.method.cipher(content, this.state.key, this.state.rotorType, this.state.wheel, this.state.wiring);
     document.getElementById("modal-result").style.display = "block";
   }
 
@@ -88,7 +89,8 @@ class Enigma extends Component {
         console.log(this.state.rotorType)
         console.log(this.state.wheel)
         console.log(this.state.wiring)
-        document.getElementById('enigmaResult').innerHTML = this.state.method.cipher(this.state.text, this.state.key, this.state.rotorType, this.state.wheel, this.state.wiring);
+        document.getElementById('plaintextResult').innerHTML = this.state.text
+        document.getElementById('ciphertextResult').innerHTML = this.state.method.cipher(this.state.text, this.state.key, this.state.rotorType, this.state.wheel, this.state.wiring);
         document.getElementById("modal-result").style.display = "block";
       }
       else if (this.state.selectedFile !== undefined) {
@@ -123,7 +125,7 @@ class Enigma extends Component {
       <React.Fragment>
         <Select
           className="method-droplist"
-          placeholder="Select reflector"
+          placeholder="select reflector"
           styles={selectStyles}
           theme={(theme) => ({
             ...theme,
@@ -143,16 +145,16 @@ class Enigma extends Component {
           <div className="container-enigma">
             <form className="enigma-form" onSubmit={this.handleCipher}>
               <label>Text</label>
-              <textarea id="text-input" placeholder="example: Hello World" type="text" name="text" rows="6" onChange={this.onTextChange} value={this.state.text}/>
+              <textarea id="text-input" placeholder="your text (example: Hello World)" type="text" name="text" rows="6" onChange={this.onTextChange} value={this.state.text}/>
 
               <label>Key</label>
               <input id="key-input" placeholder="rotors initial position (example: A A A)" type="text" name="key" onChange={this.onKeyChange} value={this.state.key} />
 
-              <label className="rotor-input">Rotors</label>
-              <input className="rotor-input" placeholder="rotors type from left to right divided by spaces (example: I II III IV V VI VII VIII)" type="text" name="rotor" onChange={this.onRotorChange} value={this.state.rotorType} />
+              <label>Rotors</label>
+              <input id="rotor-input" placeholder="rotors type from left to right divided by spaces (example: I II III IV V VI VII VIII)" type="text" name="rotor" onChange={this.onRotorChange} value={this.state.rotorType} />
 
-              <label className="plug-input">Plugboard</label>
-              <input className="plug-input" placeholder="swap additional letters (example: AB GZ CD KT)" type="text" name="plugboard" onChange={this.onWiringChange} value={this.state.wiring} />
+              <label>Plugboard</label>
+              <input id="plug-input" placeholder="swap additional letters (example: AB GZ CD KT)" type="text" name="plugboard" onChange={this.onWiringChange} value={this.state.wiring} />
 
               <div className="button-container">
                 <input id="file-input" type="file" name="file" className="upload-button" onChange={this.onFileChange} />
@@ -169,8 +171,14 @@ class Enigma extends Component {
         <div id="modal-result" className="modal-enigma">
           <div className="modal-content-container">
             <div className="modal-content">
-              <p id="message">Result</p>
-              <textarea id="enigmaResult" type="text" readOnly rows="6"></textarea>
+              <p id="message">Enigma Cipher Result</p>
+
+              <label className="messageResult">Plaintext</label>
+              <textarea id="plaintextResult" className="enigmaResult" type="text" readOnly rows="6"></textarea>
+
+              <label className="messageResult">Ciphertext</label>
+              <textarea id="ciphertextResult" className="enigmaResult" type="text" readOnly rows="6"></textarea>
+
               <div className="button-container">
                 <button className="download-button" onClick={this.download}>
                   <FontAwesomeIcon icon="cloud-download-alt" /> &nbsp; Download

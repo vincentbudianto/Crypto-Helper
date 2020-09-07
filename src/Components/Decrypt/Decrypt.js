@@ -16,7 +16,7 @@ const selectStyles = {
   option: (provided, state) => ({
     ...provided,
     borderRadius: "10px",
-    color: "#000000",
+    color: "#000000"
   })
 }
 
@@ -40,6 +40,7 @@ let fileReader;
 class Decrypt extends Component {
   state = {
     method: undefined,
+    methodName: "",
     selectedFile: undefined,
     fileType: "",
     fileName: "",
@@ -57,13 +58,15 @@ class Decrypt extends Component {
 
   onMethodChange = event => {
     this.setState({ method: event.value })
+    this.setState({ methodName: event.label })
+    this.setState({ key: "" })
 
     if (event.value == vigenere || event.value == fVigenere || event.value == aKeyVigenere || event.value == eVigenere || event.value == playfair || event.value == sEncryption) {
-      document.getElementById("key-input").placeholder = "example: secret key";
+      document.getElementById("key-input").placeholder = "random text (example: secret key)";
     } else if (event.value == affine) {
-      document.getElementById("key-input").placeholder = "example: 7 10";
+      document.getElementById("key-input").placeholder = "relatively prime number of 26 and shift magnitude (example: 7 10)";
     } else if (event.value == hill) {
-      document.getElementById("key-input").placeholder = "example: 17 17 5 21 18 21 2 2 19";
+      document.getElementById("key-input").placeholder = "3x3 matrix (example: 17 17 5 21 18 21 2 2 19)";
     }
   }
 
@@ -80,15 +83,18 @@ class Decrypt extends Component {
     const content = fileReader.result;
 
     if (this.state.fileType === "text/plain") {
+      document.getElementById('methodResult').innerHTML = this.state.methodName;
+      document.getElementById('ciphertextResult').innerHTML = this.state.text;
       document.getElementById('encryptedResult').innerHTML = this.state.method.decrypt(content, this.state.key);
       document.getElementById("modal-result").style.display = "block";
     } else {
-      console.log(content);
       const typedArray = new Uint8Array(content);
       const array = [...typedArray];
-      var decrypted = this.state.method.decrypt(array, this.state.key);
+
+      let decrypted = this.state.method.decrypt(array, this.state.key);
+
       const decryptedBuffer = new Uint8Array(decrypted);
-      console.log(decryptedBuffer);
+
       this.downloadExtended(decryptedBuffer);
     }
   }
@@ -111,15 +117,12 @@ class Decrypt extends Component {
     e.preventDefault();
 
     if (this.state.method !== undefined && this.state.key !== "") {
-      console.log(this.state.method)
       if (this.state.text !== "") {
-        console.log(this.state.text)
-        console.log(this.state.key)
+        document.getElementById('methodResult').innerHTML = this.state.methodName;
+        document.getElementById('ciphertextResult').innerHTML = this.state.text;
         document.getElementById('decryptedResult').innerHTML = this.state.method.decrypt(this.state.text, this.state.key);
         document.getElementById("modal-result").style.display = "block";
-      }
-      else if (this.state.selectedFile !== undefined) {
-        console.log(this.state.selectedFile);
+      } else if (this.state.selectedFile !== undefined) {
         fileReader = new FileReader();
         fileReader.onloadend = this.handleFileRead;
 
@@ -135,7 +138,7 @@ class Decrypt extends Component {
   download = () => {
     const element = document.createElement("a");
     const file = new Blob([document.getElementById("decryptedResult").value], {
-      type: "text/plain;charset=utf-8",
+      type: "text/plain;charset=utf-8"
     });
 
     element.className = "download-file";
@@ -155,7 +158,7 @@ class Decrypt extends Component {
       <React.Fragment>
         <Select
           className="method-droplist"
-          placeholder="Select decryption method"
+          placeholder="select decryption method"
           styles={selectStyles}
           theme={(theme) => ({
             ...theme,
@@ -174,7 +177,7 @@ class Decrypt extends Component {
           <div className="container-decrypt">
             <form className="decrypt-form" onSubmit={this.handleDecrypt}>
               <label htmlFor="text" id="label-account">Text</label>
-              <textarea id="text-input" placeholder="Your ciphertext" type="text" name="text" rows="6" onChange={this.onTextChange} value={this.state.text}/>
+              <textarea id="text-input" placeholder="your ciphertext (example: CZOLNE)" type="text" name="text" rows="6" onChange={this.onTextChange} value={this.state.text}/>
 
               <label htmlFor="key" id="label-key">Key</label>
               <input id="key-input" placeholder="please select decryption method" type="text" name="key" onChange={this.onKeyChange} value={this.state.key}/>
@@ -194,8 +197,13 @@ class Decrypt extends Component {
         <div id="modal-result" className="modal-decrypt">
           <div className="modal-content-container">
             <div className="modal-content">
-              <p id="message">Result</p>
-              <textarea id="decryptedResult" type="text" readOnly rows="6"></textarea>
+              <p id="message"><span id="methodResult"></span> Result</p>
+
+              <label className="messageResult">Ciphertext</label>
+              <textarea id="ciphertextResult" className="decryptedResult" type="text" readOnly rows="6"></textarea>
+
+              <label className="messageResult">Plaintext</label>
+              <textarea id="decryptedResult" className="decryptedResult" type="text" readOnly rows="6"></textarea>
               <div className="button-container">
                 <button className="download-button" onClick={this.download}>
                   <FontAwesomeIcon icon="cloud-download-alt" /> &nbsp; Download

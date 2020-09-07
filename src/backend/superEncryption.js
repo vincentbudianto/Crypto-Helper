@@ -11,7 +11,6 @@ module.exports = {
      */
 	generateTable: function (input, k) {
 		let i = 0;
-		let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 		// Initilize matrix
 		let matrix = new Array(k);
@@ -27,7 +26,7 @@ module.exports = {
 					matrix[k][l] = input[i];
 					i++;
 				} else {
-					matrix[k][l] = alphabet[string.mod(input.length, 26)];
+					matrix[k][l] = "?";
 				}
 			}
 		}
@@ -75,7 +74,7 @@ module.exports = {
 	 */
 	decrypt: function (ciphertext, key) {
 		if (string.isString(ciphertext) && string.isString(key)) {
-			ciphertext = string.removeNonAlphabet(ciphertext);
+			ciphertext = string.removeNonAlphabetException(ciphertext);
 			key = string.removeNonAlphabet(key);
 
 			let k = Math.ceil(Math.sqrt(ciphertext.length));

@@ -18,7 +18,7 @@ const selectStyles = {
   option: (provided, state) => ({
     ...provided,
     borderRadius: "10px",
-    color: "#000000",
+    color: "#000000"
   })
 }
 
@@ -42,6 +42,7 @@ let fileReader;
 class Encrypt extends Component {
   state = {
     method: undefined,
+    methodName: "",
     selectedFile: undefined,
     fileType: "",
     fileName: "",
@@ -59,13 +60,15 @@ class Encrypt extends Component {
 
   onMethodChange = event => {
     this.setState({ method: event.value })
+    this.setState({ methodName: event.label })
+    this.setState({ key: "" })
 
     if (event.value == vigenere || event.value == fVigenere || event.value == aKeyVigenere || event.value == eVigenere || event.value == playfair || event.value == sEncryption) {
-      document.getElementById("key-input").placeholder = "example: secret key";
+      document.getElementById("key-input").placeholder = "random text (example: secret key)";
     } else if (event.value == affine) {
-      document.getElementById("key-input").placeholder = "example: 7 10";
+      document.getElementById("key-input").placeholder = "relatively prime number of 26 and shift magnitude (example: 7 10)";
     } else if (event.value == hill) {
-      document.getElementById("key-input").placeholder = "example: 17 17 5 21 18 21 2 2 19";
+      document.getElementById("key-input").placeholder = "3x3 matrix (example: 17 17 5 21 18 21 2 2 19)";
     }
   }
 
@@ -75,25 +78,28 @@ class Encrypt extends Component {
       this.setState({ selectedFile: event.target.files[0] });
       this.setState({ fileName: event.target.files[0].name });
       this.setState({ fileType: event.target.files[0].type });
-      console.log(this.state);
     }
   }
 
   handleFileRead = (e) => {
     const content = fileReader.result;
-    
+
     if (this.state.fileType === "text/plain") {
       let encrypted = this.state.method.encrypt(content, this.state.key);
+
       encrypted = str.formatOutput(encrypted, 5);
+      document.getElementById('methodResult').innerHTML = this.state.methodName;
+      document.getElementById('plaintextResult').innerHTML = this.state.text;
       document.getElementById('encryptedResult').innerHTML = encrypted;
       document.getElementById("modal-result").style.display = "block";
     } else {
-      console.log(content);
       const typedArray = new Uint8Array(content);
       const array = [...typedArray];
-      var encrypted = this.state.method.encrypt(array, this.state.key);
+
+      let encrypted = this.state.method.encrypt(array, this.state.key);
+
       const encryptedBuffer = new Uint8Array(encrypted);
-      console.log(encryptedBuffer);
+
       this.downloadExtended(encryptedBuffer);
     }
   }
@@ -116,18 +122,15 @@ class Encrypt extends Component {
     e.preventDefault();
 
     if (this.state.method !== undefined && this.state.key !== "") {
-      console.log(this.state.method)
-
       if (this.state.text !== "") {
-        console.log(this.state.text)
-        console.log(this.state.key)
-      let encrypted = this.state.method.encrypt(this.state.text, this.state.key);
-      encrypted = str.formatOutput(encrypted, 5);
-      document.getElementById('encryptedResult').innerHTML = encrypted;
-      document.getElementById("modal-result").style.display = "block";
-      }
-      else if (this.state.selectedFile !== undefined) {
-        console.log(this.state.selectedFile);
+        let encrypted = this.state.method.encrypt(this.state.text, this.state.key);
+
+        encrypted = str.formatOutput(encrypted, 5);
+        document.getElementById('methodResult').innerHTML = this.state.methodName;
+        document.getElementById('plaintextResult').innerHTML = this.state.text;
+        document.getElementById('encryptedResult').innerHTML = encrypted;
+        document.getElementById("modal-result").style.display = "block";
+      } else if (this.state.selectedFile !== undefined) {
         fileReader = new FileReader();
         fileReader.onloadend = this.handleFileRead;
 
@@ -143,7 +146,7 @@ class Encrypt extends Component {
   download = () => {
     const element = document.createElement("a");
     const file = new Blob([document.getElementById("encryptedResult").value], {
-      type: "text/plain;charset=utf-8",
+      type: "text/plain;charset=utf-8"
     });
 
     element.className = "download-file";
@@ -163,7 +166,7 @@ class Encrypt extends Component {
       <React.Fragment>
         <Select
           className="method-droplist"
-          placeholder="Select encryption method"
+          placeholder="select encryption method"
           styles={selectStyles}
           theme={(theme) => ({
             ...theme,
@@ -182,7 +185,7 @@ class Encrypt extends Component {
           <div className="container-encrypt">
             <form className="encrypt-form" onSubmit={this.handleEncrypt}>
               <label>Text</label>
-              <textarea id="text-input" placeholder="example: Hello World" type="text" name="text" rows="6" onChange={this.onTextChange} value={this.state.text}/>
+              <textarea id="text-input" placeholder="your plaintext (example: Kripto)" type="text" name="text" rows="6" onChange={this.onTextChange} value={this.state.text}/>
 
               <label>Key</label>
               <input id="key-input" placeholder="please select encryption method" type="text" name="key" onChange={this.onKeyChange} value={this.state.key}/>
@@ -202,8 +205,14 @@ class Encrypt extends Component {
         <div id="modal-result" className="modal-encrypt">
           <div className="modal-content-container">
             <div className="modal-content">
-              <p id="message">Result</p>
-              <textarea id="encryptedResult" type="text" readOnly rows="6"></textarea>
+              <p id="message"><span id="methodResult"></span> Result</p>
+
+              <label className="messageResult">Plaintext</label>
+              <textarea id="plaintextResult" className="encryptedResult" type="text" readOnly rows="6"></textarea>
+
+              <label className="messageResult">Ciphertext</label>
+              <textarea id="encryptedResult" className="encryptedResult" type="text" readOnly rows="6"></textarea>
+
               <div className="button-container">
                 <button className="download-button" onClick={this.download}>
                   <FontAwesomeIcon icon="cloud-download-alt" /> &nbsp; Download

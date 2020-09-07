@@ -21,6 +21,15 @@ module.exports = {
     },
 
     /**
+     * Removes all non alphabet and capitalize each letters (including spaces & newlines except '?')
+     * @param {String} input
+     * @returns {String}
+     */
+    removeNonAlphabetException: function (input) {
+        return input.replace(/[^a-zA-Z?]/gi, '').toUpperCase();
+    },
+
+    /**
      * Removes all duplicate characters
      * @param {String} input
      * @returns {String}
@@ -62,6 +71,23 @@ module.exports = {
     },
 
     /**
+     * Converts all alphabet to its order in alphabet (e.g. J -> 10)
+     * @param {String} input - All characters must be upper case alphabet
+     * @returns {Array} - Array of order numbers
+     */
+    toNumbersException: function(input) {
+        input = this.removeNonAlphabetException(input);
+
+        let out = [];
+
+        for (let i = 0; i < input.length; i++) {
+            out.push(input.charCodeAt(i) - a.charCodeAt(0));
+        }
+
+        return out;
+    },
+
+    /**
      * Converts all alphabet to ASCII
      * @param {String} input - All characters must be upper case alphabet
      * @returns {Array} - Array of order numbers
@@ -83,7 +109,11 @@ module.exports = {
         let out = "";
 
         for (let i = 0; i < input.length; i++) {
-            out += String.fromCharCode(input[i] + a.charCodeAt(0));
+            if (input[i] === 63) {
+                out += String.fromCharCode(input[i]);
+            } else {
+                out += String.fromCharCode(input[i] + a.charCodeAt(0));
+            }
         }
 
         return out;
@@ -182,7 +212,7 @@ module.exports = {
     /**
      * Splits the output into groups of n characters (n=5: ABCDEFG -> ABCDE FG)
      * @param {String} input
-     * @returns {String} 
+     * @returns {String}
      */
     formatOutput: function(input, n) {
         let out = "";

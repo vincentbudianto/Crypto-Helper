@@ -64,7 +64,7 @@ module.exports = {
             while (i < plaintext.length) {
                 mP = plaintext.slice(i, i+3);
 
-                while (mP.length < 3) mP.push(0);
+                while (mP.length < 3) mP.push(63);
 
                 mC = math.multiply(mK, mP);
                 mC = math.round(mC);
@@ -109,7 +109,7 @@ module.exports = {
             let mKinv = this.modMatrixInverse(mK, 26)
 
             // Convert ciphertext to numbers
-            ciphertext = string.toNumbers(ciphertext);
+            ciphertext = string.toNumbersException(ciphertext);
 
             let mC, mP = [0, 0, 0];
             let out = "";
@@ -120,11 +120,12 @@ module.exports = {
             while (i < ciphertext.length) {
                 mC = ciphertext.slice(i, i+3);
 
-                while (mC.length < 3) mC.push(0);
+                while (mC.length < 3) mC.push(63);
 
                 mP = math.multiply(mKinv, mC);
                 mP = math.round(mP);
                 mP = math.mod(mP, 26);
+
                 out += string.toAlphabet(mP);
                 i+=3;
             }
