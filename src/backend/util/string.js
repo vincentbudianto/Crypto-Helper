@@ -30,6 +30,15 @@ module.exports = {
     },
 
     /**
+     * Removes all non alphabet and capitalize each letters (including spaces & newlines except '?' and '#)
+     * @param {String} input
+     * @returns {String}
+     */
+    removeNonAlphabetHill: function (input) {
+        return input.replace(/[^a-zA-Z?#]/gi, '').toUpperCase();
+    },
+
+    /**
      * Removes all duplicate characters
      * @param {String} input
      * @returns {String}
@@ -113,6 +122,50 @@ module.exports = {
                 out += String.fromCharCode(input[i]);
             } else {
                 out += String.fromCharCode(input[i] + a.charCodeAt(0));
+            }
+        }
+
+        return out;
+    },
+
+    /**
+     * Converts all number order in alphabet to alphabet with 27 -> ? (e.g. 10 -> J)
+     * @param {Array} input - Array of order numbers
+     * @returns {String}
+     */
+    toAlphabetHill: function(input) {
+        let out = "";
+
+        for (let i = 0; i < input.length; i++) {
+            if (input[i] === 26) {
+                out += "?";
+            } else if (input[i] === 27) {
+                out += "#";
+            } else {
+                out += String.fromCharCode(input[i] + a.charCodeAt(0));
+            }
+        }
+
+        return out;
+    },
+
+    /**
+     * Converts all number order in alphabet to alphabet with ? -> 27 (e.g. 10 -> J)
+     * @param {Array} input - Array of order numbers
+     * @returns {String}
+     */
+    toNumbersHill: function(input) {
+        input = this.removeNonAlphabetHill(input);
+
+        let out = [];
+
+        for (let i = 0; i < input.length; i++) {
+            if (input[i] === "?") {
+                out.push(26);
+            } else if (input[i] === "#") {
+                out.push(27);
+            } else {
+                out.push(input.charCodeAt(i) - a.charCodeAt(0));
             }
         }
 

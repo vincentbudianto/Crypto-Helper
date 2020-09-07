@@ -43,8 +43,8 @@ let math = require('mathjs')
 // console.log(affine.encrypt("kripto asik", "7 10"));
 // console.log(affine.decrypt("CZOLNEKGOC", "7 10"));
 console.log("\nHill :");
-console.log(hill.encrypt("kriptografikk", "17 17 5 21 18 21 2 2 19"))
-console.log(hill.decrypt("FIYYPWSYP", "17 17 5 21 18 21 2 2 19"))
+console.log(hill.encrypt("kriptografika", "17 17 5 21 18 21 2 2 19"))
+console.log(hill.decrypt("XMKE#?#MSTLUMGO", "17 17 5 21 18 21 2 2 19"))
 // console.log("\nEnigma :");
 // console.log(enigma.cipher("Halo Apa kabar", "A A A", "I|II|III", "Reflector B", ""))
 // console.log(enigma.cipher("IDBMOUCZLKKL", "A A A", "I|II|III", "Reflector B", ""))
