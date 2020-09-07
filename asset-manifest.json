@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Crypto-Helper/static/css/main.1593b777.chunk.css",
+    "main.js": "/Crypto-Helper/static/js/main.aa3a99ed.chunk.js",
+    "main.js.map": "/Crypto-Helper/static/js/main.aa3a99ed.chunk.js.map",
+    "runtime-main.js": "/Crypto-Helper/static/js/runtime-main.48a7c6ad.js",
+    "runtime-main.js.map": "/Crypto-Helper/static/js/runtime-main.48a7c6ad.js.map",
+    "static/js/2.6bef8c2e.chunk.js": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js",
+    "static/js/2.6bef8c2e.chunk.js.map": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js.map",
+    "index.html": "/Crypto-Helper/index.html",
+    "precache-manifest.7d02ded3868a640164b9ab27ccd1ec80.js": "/Crypto-Helper/precache-manifest.7d02ded3868a640164b9ab27ccd1ec80.js",
+    "service-worker.js": "/Crypto-Helper/service-worker.js",
+    "static/css/main.1593b777.chunk.css.map": "/Crypto-Helper/static/css/main.1593b777.chunk.css.map",
+    "static/js/2.6bef8c2e.chunk.js.LICENSE.txt": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/Crypto-Helper/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.48a7c6ad.js",
+    "static/js/2.6bef8c2e.chunk.js",
+    "static/css/main.1593b777.chunk.css",
+    "static/js/main.aa3a99ed.chunk.js"
+  ]
+}
