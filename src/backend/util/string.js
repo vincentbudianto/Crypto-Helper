@@ -177,5 +177,18 @@ module.exports = {
         }
 
         return out;
+    },
+
+    /**
+     * Splits the output into groups of n characters (n=5: ABCDEFG -> ABCDE FG)
+     * @param {String} input
+     * @returns {String} 
+     */
+    formatOutput: function(input, n) {
+        let out = "";
+        for (let i=0; i<input.length; i+=n) {
+            out += input.substr(i, n) + " ";
+        }
+        return out;
     }
 }

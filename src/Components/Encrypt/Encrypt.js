@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Encrypt.css";
+import { string } from "mathjs";
 
+let str = require("../../backend/util/string")
 let vigenere = require("../../backend/vigenere");
 let fVigenere = require("../../backend/fullVigenere");
 let aKeyVigenere = require("../../backend/autoKeyVigenere");
@@ -81,7 +83,9 @@ class Encrypt extends Component {
     const content = fileReader.result;
     
     if (this.state.fileType === "text/plain") {
-      document.getElementById('encryptedResult').innerHTML = this.state.method.encrypt(content, this.state.key);
+      let encrypted = this.state.method.encrypt(content, this.state.key);
+      encrypted = str.formatOutput(encrypted, 5);
+      document.getElementById('encryptedResult').innerHTML = encrypted;
       document.getElementById("modal-result").style.display = "block";
     } else {
       console.log(content);
@@ -117,8 +121,10 @@ class Encrypt extends Component {
       if (this.state.text !== "") {
         console.log(this.state.text)
         console.log(this.state.key)
-        document.getElementById('encryptedResult').innerHTML = this.state.method.encrypt(this.state.text, this.state.key);
-        document.getElementById("modal-result").style.display = "block";
+      let encrypted = this.state.method.encrypt(this.state.text, this.state.key);
+      encrypted = str.formatOutput(encrypted, 5);
+      document.getElementById('encryptedResult').innerHTML = encrypted;
+      document.getElementById("modal-result").style.display = "block";
       }
       else if (this.state.selectedFile !== undefined) {
         console.log(this.state.selectedFile);
