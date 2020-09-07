@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "51f93581c8cf56b82827ec5c2a1b500e",
+    "revision": "70b8a107305e8974721df53bd3f30cd6",
     "url": "/Crypto-Helper/index.html"
   },
   {
-    "revision": "3cf352cd6c9e02ad64d8",
+    "revision": "a364744c84e223b35d80",
     "url": "/Crypto-Helper/static/css/main.1593b777.chunk.css"
   },
   {
@@ -16,15 +16,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3cf352cd6c9e02ad64d8",
-    "url": "/Crypto-Helper/static/js/main.aa3a99ed.chunk.js"
+    "revision": "a364744c84e223b35d80",
+    "url": "/Crypto-Helper/static/js/main.7aabb00c.chunk.js"
   },
   {
     "revision": "ecfec08d558ccdc5e3de",
     "url": "/Crypto-Helper/static/js/runtime-main.48a7c6ad.js"
   },
   {
-    "revision": "5d5d9eefa31e5e13a6610d9fa7a283bb",
-    "url": "/Crypto-Helper/static/media/logo.5d5d9eef.svg"
+    "revision": "2fc2417048b4e9d1ac712d2942a64440",
+    "url": "/Crypto-Helper/static/media/logo.2fc24170.png"
   }
 ]);
