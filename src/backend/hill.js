@@ -52,28 +52,32 @@ module.exports = {
                 k++;
             }
 
-            // Convert plaintext to numbers
-            plaintext = string.toNumbers(plaintext);
+            if (!isNaN(this.modMatrixInverse(mK, 28)[0][0])) {
+                // Convert plaintext to numbers
+                plaintext = string.toNumbers(plaintext);
 
-            let mC, mP = [0, 0, 0];
-            let out = "";
+                let mC, mP = [0, 0, 0];
+                let out = "";
 
-            // Multiply mK to plaintext
-            i=0;
+                // Multiply mK to plaintext
+                i=0;
 
-            while (i < plaintext.length) {
-                mP = plaintext.slice(i, i+3);
+                while (i < plaintext.length) {
+                    mP = plaintext.slice(i, i+3);
 
-                while (mP.length < 3) mP.push(26);
+                    while (mP.length < 3) mP.push(26);
 
-                mC = math.multiply(mK, mP);
-                mC = math.round(mC);
-                mC = math.mod(mC, 28);
-                out += string.toAlphabetHill(mC);
-                i+=3;
+                    mC = math.multiply(mK, mP);
+                    mC = math.round(mC);
+                    mC = math.mod(mC, 28);
+                    out += string.toAlphabetHill(mC);
+                    i+=3;
+                }
+
+                return out;
+            } else {
+                return "NO MODULAR INVERSE FOUND !!!"
             }
-
-            return out;
 		} else {
             return "INPUT ERROR";
 		}
@@ -108,30 +112,34 @@ module.exports = {
             // Find key inverse
             let mKinv = this.modMatrixInverse(mK, 28)
 
-            // Convert ciphertext to numbers
-            ciphertext = string.toNumbersHill(ciphertext);
+            if (!isNaN(mKinv[0][0])) {
+                // Convert ciphertext to numbers
+                ciphertext = string.toNumbersHill(ciphertext);
 
-            let mC, mP = [0, 0, 0];
-            let out = "";
+                let mC, mP = [0, 0, 0];
+                let out = "";
 
-            // Multiply mK to plaintext
-            i=0;
+                // Multiply mK to plaintext
+                i=0;
 
-            while (i < ciphertext.length) {
-                mC = ciphertext.slice(i, i+3);
+                while (i < ciphertext.length) {
+                    mC = ciphertext.slice(i, i+3);
 
-                while (mC.length < 3) mC.push(26);
+                    while (mC.length < 3) mC.push(26);
 
-                mP = math.multiply(mKinv, mC);
-                mP = math.round(mP);
-                mP = math.mod(mP, 28);
+                    mP = math.multiply(mKinv, mC);
+                    mP = math.round(mP);
+                    mP = math.mod(mP, 28);
 
-                out += string.toAlphabetHill(mP);
-                i+=3;
+                    out += string.toAlphabetHill(mP);
+                    i+=3;
+                }
+
+                out = string.removeNonAlphabet(out);
+                return out;
+            } else {
+                return "NO MODULAR INVERSE FOUND !!!"
             }
-
-            out = string.removeNonAlphabet(out);
-            return out;
 		} else {
 			return "INPUT ERROR";
 		}

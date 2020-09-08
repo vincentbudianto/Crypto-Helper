@@ -70,11 +70,90 @@ dengan spesifikasi sebagai berikut:
 
 ## Screenshot
 
+### Front page & Theme
+![front page](./doc/FrontPage.jpg)
+
+### Vigenere Cipher
+- Encryption input
+![inputEnc](./doc/VigEnc.jpg)
+- Encryption output
+![outputEnc](./doc/VigEncRes.jpg)
+- Decryption input
+![input](./doc/VigDec.jpg)
+- Decryption output
+![input](./doc/VigDecRes.jpg)
+
+### Auto Key Vigenere Cipher
+- Encryption input
+![inputEnc](./doc/aKeyVig.jpg)
+- Encryption output
+![outputEnc](./doc/aKeyVigEnc.jpg)
+- Decryption
+![input](./doc/aKeyVigDec.jpg)
+
+### Full Vigenere Cipher
+- Encryption input
+![inputEnc](./doc/fVig.jpg)
+- Encryption output
+![outputEnc](./doc/fVigEnc.jpg)
+- Decryption
+![input](./doc/fVigDec.jpg)
+
+### Extended Key Vigenere Cipher (using file)
+- Encryption file input
+![inputEnc](./doc/extVigFile.jpg)
+- Encrypted file download
+![inputEnc](./doc/extVigFileEnc.jpg)
+- Encrypted file
+![inputEnc](./doc/EncFile.jpg)
+- Decryption
+![input](./doc/extVigFileDec.jpg)
+- Decrypted File
+![input](./doc/DecFile.jpg)
+
+### Super Cipher (using text file)
+- Encryption input
+![inputEnc](./doc/super.jpg)
+- Encryption output
+![outputEnc](./doc/superEnc.jpg)
+- Decryption
+![input](./doc/superDec.jpg)
+
+### Playfair Cipher
+- Encryption input
+![inputEnc](./doc/play.jpg)
+- Encryption output
+![outputEnc](./doc/playEnc.jpg)
+- Decryption
+![input](./doc/playDec.jpg)
+
+### Affine Cipher
+- Encryption input
+![inputEnc](./doc/affine.jpg)
+- Encryption output
+![outputEnc](./doc/affineEnc.jpg)
+- Decryption
+![input](./doc/affineDec.jpg)
+
+### Hill Cipher
+- Encryption input
+![inputEnc](./doc/hill.jpg)
+- Encryption output
+![outputEnc](./doc/hillEnc.jpg)
+- Decryption
+![input](./doc/hillDec.jpg)
+
+### Hill Cipher
+- Encryption input
+![inputEnc](./doc/enigma.jpg)
+- Encryption output
+![outputEnc](./doc/enigmaEnc.jpg)
+
 <br>
 
 ## Sources
-• Theme switch button created by [Raunaq Chawchan](https://codepen.io/_Raunaq_)
-• Icon and logo from [pngio](https://pngio.com/images/png-a1742084.html)
+- Theme switch button created by [Raunaq Chawchan](https://codepen.io/_Raunaq_)
+- Icon and logo from [pngio](https://pngio.com/images/png-a1742084.html)
 
 <p align="center">
     <b>
