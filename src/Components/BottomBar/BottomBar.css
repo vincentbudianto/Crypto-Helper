@@ -11,7 +11,7 @@
   overflow: visible;
 }
 
-.bottombar-wrapper{
+.bottombar-wrapper {
   display: inline-flex;
   direction: column;
   flex-wrap: wrap;
@@ -20,4 +20,13 @@
   flex-grow: 1;
   width: 95%;
   height: 100%;
+}
+
+.bottombar-a {
+  color: white;
+  text-decoration-line: none;
+}
+
+.bottombar-a:hover {
+  border-bottom: 2px solid #ffffff;
 }
