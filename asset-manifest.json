@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/Crypto-Helper/static/css/main.1593b777.chunk.css",
-    "main.js": "/Crypto-Helper/static/js/main.58cbe66e.chunk.js",
-    "main.js.map": "/Crypto-Helper/static/js/main.58cbe66e.chunk.js.map",
+    "main.js": "/Crypto-Helper/static/js/main.e24329d9.chunk.js",
+    "main.js.map": "/Crypto-Helper/static/js/main.e24329d9.chunk.js.map",
     "runtime-main.js": "/Crypto-Helper/static/js/runtime-main.48a7c6ad.js",
     "runtime-main.js.map": "/Crypto-Helper/static/js/runtime-main.48a7c6ad.js.map",
-    "static/js/2.6bef8c2e.chunk.js": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js",
-    "static/js/2.6bef8c2e.chunk.js.map": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js.map",
+    "static/js/2.9af3c15c.chunk.js": "/Crypto-Helper/static/js/2.9af3c15c.chunk.js",
+    "static/js/2.9af3c15c.chunk.js.map": "/Crypto-Helper/static/js/2.9af3c15c.chunk.js.map",
     "index.html": "/Crypto-Helper/index.html",
-    "precache-manifest.ae4c2fde6004456590f27550f6957be0.js": "/Crypto-Helper/precache-manifest.ae4c2fde6004456590f27550f6957be0.js",
+    "precache-manifest.72e74ee03a8a148777572d89e794eac3.js": "/Crypto-Helper/precache-manifest.72e74ee03a8a148777572d89e794eac3.js",
     "service-worker.js": "/Crypto-Helper/service-worker.js",
     "static/css/main.1593b777.chunk.css.map": "/Crypto-Helper/static/css/main.1593b777.chunk.css.map",
-    "static/js/2.6bef8c2e.chunk.js.LICENSE.txt": "/Crypto-Helper/static/js/2.6bef8c2e.chunk.js.LICENSE.txt",
+    "static/js/2.9af3c15c.chunk.js.LICENSE.txt": "/Crypto-Helper/static/js/2.9af3c15c.chunk.js.LICENSE.txt",
     "static/media/logo.png": "/Crypto-Helper/static/media/logo.2fc24170.png"
   },
   "entrypoints": [
     "static/js/runtime-main.48a7c6ad.js",
-    "static/js/2.6bef8c2e.chunk.js",
+    "static/js/2.9af3c15c.chunk.js",
     "static/css/main.1593b777.chunk.css",
-    "static/js/main.58cbe66e.chunk.js"
+    "static/js/main.e24329d9.chunk.js"
   ]
 }
