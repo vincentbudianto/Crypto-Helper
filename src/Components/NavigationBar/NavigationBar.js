@@ -7,25 +7,25 @@ class NavigationBar extends Component {
     return (
       <div className="navbar">
         <div className="navbar-wrapper">
-          <Link to="/title">
+          <Link className="navbar-a" to="/title">
             <div className="navbar-button">
               <font color="white">Home</font>
             </div>
           </Link>
 
-          <Link to="/encrypt">
+          <Link className="navbar-a" to="/encrypt">
             <div className="navbar-button">
               <font color="white">Encryption</font>
             </div>
           </Link>
 
-          <Link to="/decrypt">
+          <Link className="navbar-a" to="/decrypt">
             <div className="navbar-button">
               <font color="white">Decryption</font>
             </div>
           </Link>
 
-          <Link to="/enigma">
+          <Link className="navbar-a" to="/enigma">
             <div className="navbar-button">
               <font color="white">Enigma Machine</font>
             </div>
