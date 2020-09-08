@@ -114,7 +114,7 @@ dengan spesifikasi sebagai berikut:
 - Decryption output
 ![outputDecryption](./doc/aKeyVigDecryptResult.png)
 
-### Extended Vigenere Cipher (using file)
+### Extended Vigenere Cipher (using image file)
 - Input file
 ![inputFile](./doc/eVigFile.png)
 - Encryption file input
@@ -189,7 +189,6 @@ dengan spesifikasi sebagai berikut:
 ![inputDecryption](./doc/enigmaDecrypt.png)
 - Decryption output
 ![outputDecryption](./doc/enigmaDecryptResult.png)
-
 
 <br>
 

@@ -136,6 +136,7 @@ module.exports = {
                 }
 
                 out = string.removeNonAlphabet(out);
+
                 return out;
             } else {
                 return "NO MODULAR INVERSE FOUND !!!"

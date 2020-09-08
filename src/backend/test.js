@@ -14,7 +14,6 @@ let text = "";
 let plaintext = "";
 let ciphertext = "";
 let filename = "";
-let file = [];
 let plainfile = [];
 let cipherfile = [];
 let key = "";
@@ -135,6 +134,7 @@ fs.readFile(filename, function (err, file) {
 
   const typedArray = new Uint8Array(file);
   const array = [...typedArray];
+
   cipherfile = eVigenere.encrypt(array, key);
   plainfile = eVigenere.decrypt(cipherfile, key);
 
