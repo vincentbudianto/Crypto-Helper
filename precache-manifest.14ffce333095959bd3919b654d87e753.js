@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e3924ef2d46f6a786c255dbbaf0d8999",
+    "revision": "2a381cbb354b06de086a9cc090891c19",
     "url": "/Crypto-Helper/index.html"
   },
   {
-    "revision": "d2ce35bfd153d6407632",
+    "revision": "0c528465f645001fa155",
     "url": "/Crypto-Helper/static/css/main.a6c6704f.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Crypto-Helper/static/js/2.cac205b5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d2ce35bfd153d6407632",
-    "url": "/Crypto-Helper/static/js/main.63207cd0.chunk.js"
+    "revision": "0c528465f645001fa155",
+    "url": "/Crypto-Helper/static/js/main.4b9c0104.chunk.js"
   },
   {
     "revision": "ecfec08d558ccdc5e3de",
