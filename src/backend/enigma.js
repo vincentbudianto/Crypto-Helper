@@ -279,8 +279,8 @@ module.exports = {
 				char = alphabet[secretkey[rotor.length - 1].indexOf(char)];
 
 				// Plugboard substitution
-				if (char != plugboard[plugboard.indexOf(char)]) {
-					char = plugboard[plugboard.indexOf(char)];
+				if (char != alphabet[plugboard.indexOf(char)]) {
+					char = alphabet[plugboard.indexOf(char)];
 				}
 
 				out.push(char)

@@ -56,7 +56,7 @@ dengan spesifikasi sebagai berikut:
 ## Tabel Fitur
 | No | Feature                     | Success (✔) | Fail (❌) | Details |
 |:--:|:----------------------------|:------------|:----------|:--------|
-|  1 | Vigenere Standard           | ✔           |           |         |
+|  1 | Vigenere Cipher             | ✔           |           |         |
 |  2 | Full Vigenere Cipher        | ✔           |           |         |
 |  3 | Auto-Key Vigenere Cipher    | ✔           |           |         |
 |  4 | Extended Vigenere Cipher    | ✔           |           |         |
@@ -71,83 +71,125 @@ dengan spesifikasi sebagai berikut:
 ## Screenshot
 
 ### Front page & Theme
-![front page](./doc/FrontPage.jpg)
+- Light mode
+![light front page](./doc/frontPageLight.png)
+- Dark mode
+![dark front page](./doc/frontPageDark.png)
+
+### Page
+- Encryption
+![encryption page](./doc/encryption.png)
+- Decryption
+![decryption page](./doc/decryption.png)
+- Enigma machine
+![enigma machine page](./doc/enigma.png)
 
 ### Vigenere Cipher
 - Encryption input
-![inputEnc](./doc/VigEnc.jpg)
+![inputEncryption](./doc/vigEncrypt.png)
 - Encryption output
-![outputEnc](./doc/VigEncRes.jpg)
+![outputEncryption](./doc/vigEncryptResult.png)
 - Decryption input
-![input](./doc/VigDec.jpg)
+![inputDecryption](./doc/vigDecrypt.png)
 - Decryption output
-![input](./doc/VigDecRes.jpg)
-
-### Auto Key Vigenere Cipher
-- Encryption input
-![inputEnc](./doc/aKeyVig.jpg)
-- Encryption output
-![outputEnc](./doc/aKeyVigEnc.jpg)
-- Decryption
-![input](./doc/aKeyVigDec.jpg)
+![outputDecryption](./doc/vigDecryptResult.png)
 
 ### Full Vigenere Cipher
 - Encryption input
-![inputEnc](./doc/fVig.jpg)
+![inputEncryption](./doc/fVigEncrypt.png)
 - Encryption output
-![outputEnc](./doc/fVigEnc.jpg)
-- Decryption
-![input](./doc/fVigDec.jpg)
+![outputEncryption](./doc/fVigEncryptResult.png)
+- Decryption input
+![inputDecryption](./doc/fVigDecrypt.png)
+- Decryption output
+![outputDecryption](./doc/fVigDecryptResult.png)
 
-### Extended Key Vigenere Cipher (using file)
-- Encryption file input
-![inputEnc](./doc/extVigFile.jpg)
-- Encrypted file download
-![inputEnc](./doc/extVigFileEnc.jpg)
-- Encrypted file
-![inputEnc](./doc/EncFile.jpg)
-- Decryption
-![input](./doc/extVigFileDec.jpg)
-- Decrypted File
-![input](./doc/DecFile.jpg)
-
-### Super Cipher (using text file)
+### Auto-Key Vigenere Cipher
 - Encryption input
-![inputEnc](./doc/super.jpg)
+![inputEncryption](./doc/aKeyVigEncrypt.png)
 - Encryption output
-![outputEnc](./doc/superEnc.jpg)
+![outputEncryption](./doc/aKeyVigEncryptResult.png)
+- Decryption input
+![inputDecryption](./doc/aKeyVigDecrypt.png)
+- Decryption output
+![outputDecryption](./doc/aKeyVigDecryptResult.png)
+
+### Extended Vigenere Cipher (using file)
+- Input file
+![inputFile](./doc/eVigFile.png)
+- Encryption file input
+![inputEncryption](./doc/eVigEncryptInput.png)
+- Encryption
+![encryption](./doc/eVigEncrypt.png)
+- Encrypted file download
+![outputEncryption](./doc/eVigEncryptResult.png)
+- Encrypted file
+![encryptedFile](./doc/eVigFileEncrypted.png)
+- Decryption file input
+![inputDecryption](./doc/eVigDecryptInput.png)
 - Decryption
-![input](./doc/superDec.jpg)
+![decryption](./doc/eVigDecrypt.png)
+- Decryption file download
+![outputDecryption](./doc/eVigDecryptResult.png)
+- Decrypted File
+![decryptedFile](./doc/eVigFileDecrypted.png)
 
 ### Playfair Cipher
 - Encryption input
-![inputEnc](./doc/play.jpg)
+![inputEncryption](./doc/playfairEncrypt.png)
 - Encryption output
-![outputEnc](./doc/playEnc.jpg)
-- Decryption
-![input](./doc/playDec.jpg)
+![outputEncryption](./doc/playfairEncryptResult.png)
+- Decryption input
+![inputDecryption](./doc/playfairDecrypt.png)
+- Decryption output
+![outputDecryption](./doc/playfairDecryptResult.png)
+
+### Super Cipher (using text file)
+- Encryption input
+![inputEncryption](./doc/sCipherEncrypt.png)
+- Encryption output
+![outputEncryption](./doc/sCipherEncryptResult.png)
+- Encryption download
+![downloadEncryption](./doc/sCipherEncryptFile.png)
+- Decryption input
+![inputDecryption](./doc/sCipherDecrypt.png)
+- Decryption output
+![outputDecryption](./doc/sCipherDecryptResult.png)
+- Decryption download
+![downloadDecryption](./doc/sCipherDecryptFile.png)
+- Input files, encrypted files and decrypted files
+![files](./doc/sCipherFile.png)
 
 ### Affine Cipher
 - Encryption input
-![inputEnc](./doc/affine.jpg)
+![inputEncryption](./doc/affineEncrypt.png)
 - Encryption output
-![outputEnc](./doc/affineEnc.jpg)
-- Decryption
-![input](./doc/affineDec.jpg)
+![outputEncryption](./doc/affineEncryptResult.png)
+- Decryption input
+![inputDecryption](./doc/affineDecrypt.png)
+- Decryption output
+![outputDecryption](./doc/affineDecryptResult.png)
 
 ### Hill Cipher
 - Encryption input
-![inputEnc](./doc/hill.jpg)
+![inputEncryption](./doc/hillEncrypt.png)
 - Encryption output
-![outputEnc](./doc/hillEnc.jpg)
-- Decryption
-![input](./doc/hillDec.jpg)
+![outputEncryption](./doc/hillEncryptResult.png)
+- Decryption input
+![inputDecryption](./doc/hillDecrypt.png)
+- Decryption output
+![outputDecryption](./doc/hillDecryptResult.png)
 
-### Hill Cipher
+### Enigma Cipher
 - Encryption input
-![inputEnc](./doc/enigma.jpg)
+![inputEncryption](./doc/enigmaEncrypt.png)
 - Encryption output
-![outputEnc](./doc/enigmaEnc.jpg)
+![outputEncryption](./doc/enigmaEncryptResult.png)
+- Decryption input
+![inputDecryption](./doc/enigmaDecrypt.png)
+- Decryption output
+![outputDecryption](./doc/enigmaDecryptResult.png)
+
 
 <br>
 

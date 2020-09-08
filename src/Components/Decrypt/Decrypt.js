@@ -21,14 +21,14 @@ const selectStyles = {
 }
 
 const selectOptions = [
-  { value: vigenere, label: "Vigenere Standard" },
-  { value: fVigenere, label: "Full Vigenere Cipher" },
+  { value: affine, label: "Affine Cipher" },
   { value: aKeyVigenere, label: "Auto-Key Vigenere Cipher" },
   { value: eVigenere, label: "Extended Vigenere Cipher" },
+  { value: fVigenere, label: "Full Vigenere Cipher" },
+  { value: hill, label: "Hill Cipher" },
   { value: playfair, label: "Playfair Cipher" },
-  { value: sEncryption, label: "Super Encription" },
-  { value: affine, label: "Affine Cipher" },
-  { value: hill, label: "Hill Cipher" }
+  { value: sEncryption, label: "Super Encryption" },
+  { value: vigenere, label: "Vigenere Cipher" }
 ]
 
 const truncate = (input) => {
@@ -49,17 +49,17 @@ class Decrypt extends Component {
   }
 
   onTextChange = event => {
-    this.setState({ text: event.target.value })
+    this.setState({ text: event.target.value });
   }
 
   onKeyChange = event => {
-    this.setState({ key: event.target.value })
+    this.setState({ key: event.target.value });
   }
 
   onMethodChange = event => {
-    this.setState({ method: event.value })
-    this.setState({ methodName: event.label })
-    this.setState({ key: "" })
+    this.setState({ method: event.value });
+    this.setState({ methodName: event.label });
+    this.setState({ key: "" });
 
     if (event.value == vigenere || event.value == fVigenere || event.value == aKeyVigenere || event.value == eVigenere || event.value == playfair || event.value == sEncryption) {
       document.getElementById("key-input").placeholder = "random text (example: secret key)";
@@ -74,7 +74,7 @@ class Decrypt extends Component {
   onFileChange = event => {
     if (event.target.files[0] != undefined) {
       this.setState({ selectedFile: event.target.files[0] });
-      this.setState({ fileName: event.target.files[0].name })
+      this.setState({ fileName: event.target.files[0].name });
       this.setState({ fileType: event.target.files[0].type });
     }
   }
@@ -145,7 +145,7 @@ class Decrypt extends Component {
 
     element.className = "download-file";
     element.href = URL.createObjectURL(file);
-    element.download = "result.txt";
+    element.download = "Decrypted-" + this.state.fileName;
     document.body.appendChild(element);
     element.click();
     element.remove();
