@@ -88,7 +88,7 @@ class Encrypt extends Component {
 
       encrypted = str.formatOutput(encrypted, 5);
       document.getElementById('methodResult').innerHTML = this.state.methodName;
-      document.getElementById('plaintextResult').innerHTML = this.state.text;
+      document.getElementById('plaintextResult').innerHTML = content;
       document.getElementById('encryptedResult').innerHTML = encrypted;
       document.getElementById("modal-result").style.display = "block";
     } else {

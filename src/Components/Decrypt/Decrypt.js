@@ -86,7 +86,7 @@ class Decrypt extends Component {
       let decrypted = this.state.method.decrypt(content, this.state.key);
 
       document.getElementById('methodResult').innerHTML = this.state.methodName;
-      document.getElementById('ciphertextResult').innerHTML = this.state.text;
+      document.getElementById('ciphertextResult').innerHTML = content;
       document.getElementById('decryptedResult').innerHTML = decrypted;
       document.getElementById("modal-result").style.display = "block";
     } else {
