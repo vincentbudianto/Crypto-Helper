@@ -8,43 +8,142 @@ let sEncryption = require('./superEncryption')
 let affine = require('./affine')
 let hill = require('./hill')
 let enigma = require("./enigma")
+let fs = require('fs');
 
-console.log("<<<<<< CIPHER ALGORITHM TESTING >>>>>>");
-console.log("\nVigenere :");
-console.log(vigenere.encrypt("I will find you", "C"));
-console.log(vigenere.decrypt("KYKNNHKPFAQW", "C"));
-console.log("\nFull Vigenere :");
-console.log(fVigenere.encrypt("I will find you", "maybe"));
-console.log(fVigenere.decrypt("IZXGRBBZNDFK", "maybe"));
-console.log("\nAuto-Key Vigenere :");
-console.log(aKeyVigenere.encrypt("negara penghasil minyak", "INDO"));
-console.log(aKeyVigenere.decrypt("VRJOEEVEEGWEFOSMAVJMS", "INDO"));
-console.log("\nExtended Vigenere :");
-console.log(eVigenere.encrypt([
-    110, 101, 103,  97, 114,  97,
-     32, 112, 101, 110, 103, 104,
-     97, 115, 105, 108,  32, 109,
-    105, 110, 121,  97, 107
-  ], "INDO"));
-console.log(eVigenere.decrypt([
-    183, 179, 171, 176, 187,
-    175, 100, 191, 174, 188,
-    171, 183, 170, 193, 173,
-    187, 105, 187, 173, 189,
-    194, 175, 175
-  ], "INDO"));
-console.log("\nPlayfair :");
-console.log(playfair.encrypt("temui ibu nanti malam", "JALAN GANESHA SEPULUH"));
-console.log(playfair.decrypt("ZB RS FY KU PG LG RK VS NL QV", "JALAN GANESHA SEPULUH"));
-console.log("\nSuper Encryption :");
-console.log(sEncryption.encrypt("temui ibu nanti malam", "ABCDEFGHIJ"));
-console.log(sEncryption.decrypt("TNNQ?FHUG?OBKT?XVP??MJE??", "ABCDEFGHIJ"));
-console.log("\nAffine :");
-console.log(affine.encrypt("kripto asik", "7 10"));
-console.log(affine.decrypt("CZOLNEKGOC", "7 10"));
-console.log("\nHill :");
-console.log(hill.encrypt("kriptografika", "17 17 5 21 18 21 2 2 19"))
-console.log(hill.decrypt("XMKE#?#MSTLUMGO", "17 17 5 21 18 21 2 2 19"))
-console.log("\nEnigma :");
-console.log(enigma.cipher("Halo Apa kabar kalian semua apakah baik baik saja", "ABCDEFGH", "I II III IV V VI VII VIII", "Reflector B", ""))
-console.log(enigma.cipher("XBEJNSYZDHJLSGZKYPBZLCIVAPHIZOGRYDSVBTNTU", "ABCDEFGH", "I II III IV V VI VII VIII", "Reflector B", ""))
+let text = "";
+let plaintext = "";
+let ciphertext = "";
+let filename = "";
+let file = [];
+let plainfile = [];
+let cipherfile = [];
+let key = "";
+let rotors = "";
+let wheel = "";
+let wiring = "";
+
+console.log("  <<<<<< CIPHER ALGORITHM RESULT >>>>>>");
+
+console.log("\n  Vigenere Standard");
+text = "I will find you";
+key = "K";
+ciphertext = vigenere.encrypt(text, key);
+plaintext = vigenere.decrypt(ciphertext, key);
+
+console.log("       input :", text)
+console.log("         key :", key)
+console.log("");
+console.log("  encryption :", ciphertext)
+console.log("  decryption :", plaintext)
+
+console.log("\n  Full Vigenere Cipher ");
+text = "You cant find me";
+key = "maybe";
+ciphertext = fVigenere.encrypt(text, key);
+plaintext = fVigenere.decrypt(ciphertext, key);
+
+console.log("       input :", text)
+console.log("         key :", key)
+console.log("");
+console.log("  encryption :", ciphertext)
+console.log("  decryption :", plaintext)
+
+console.log("\n  Auto-Key Vigenere Cipher");
+text = "negara penghasil minyak";
+key = "INDONESIA";
+ciphertext = aKeyVigenere.encrypt(text, key);
+plaintext = aKeyVigenere.decrypt(ciphertext, key);
+
+console.log("       input :", text)
+console.log("         key :", key)
+console.log("");
+console.log("  encryption :", ciphertext)
+console.log("  decryption :", plaintext)
+
+console.log("\n  Playfair Cipher");
+text = "temui ibu nanti malam";
+key = "JALAN GANESHA SEPULUH";
+ciphertext = playfair.encrypt(text, key);
+plaintext = playfair.decrypt(ciphertext, key);
+
+console.log("       input :", text)
+console.log("         key :", key)
+console.log("");
+console.log("  encryption :", ciphertext)
+console.log("  decryption :", plaintext)
+
+console.log("\n  Super Encryption");
+text = "temui bapak besok pagi segera ya";
+key = "ABCDEFGHIJjihgfedcba";
+ciphertext = sEncryption.encrypt(text, key);
+plaintext = sEncryption.decrypt(ciphertext, key);
+
+console.log("       input :", text)
+console.log("         key :", key)
+console.log("");
+console.log("  encryption :", ciphertext)
+console.log("  decryption :", plaintext)
+
+console.log("\n  Affine Cipher");
+text = "kripto asik";
+key = "7 10";
+ciphertext = affine.encrypt(text, key);
+plaintext = affine.decrypt(ciphertext, key);
+
+console.log("       input :", text)
+console.log("         key :", key)
+console.log("");
+console.log("  encryption :", ciphertext)
+console.log("  decryption :", plaintext)
+
+console.log("\n  Hill Cipher ");
+text = "kriptografika";
+key = "17 17 5 21 18 21 2 2 19";
+ciphertext = hill.encrypt(text, key);
+plaintext = hill.decrypt(ciphertext, key);
+
+console.log("       input :", text)
+console.log("         key :", key)
+console.log("");
+console.log("  encryption :", ciphertext)
+console.log("  decryption :", plaintext)
+
+console.log("\n  Enigma Cipher ");
+text = "Halo Apa kabar kalian semua apakah baik baik saja";
+key = "ABCDEFGH";
+rotors = "I II III IV V VI VII VIII";
+wheel = "Reflector B";
+wiring = "ab km ju bw zh";
+ciphertext = enigma.cipher(text, key, rotors, wheel, wiring);
+plaintext = enigma.cipher(ciphertext, key, rotors, wheel, wiring);
+
+console.log("       input :", text)
+console.log("         key :", key)
+console.log("      rotors :", rotors)
+console.log("   reflector :", wheel)
+console.log("      wiring :", wiring)
+console.log("");
+console.log("  encryption :", ciphertext)
+console.log("  decryption :", plaintext)
+
+console.log("\n  Extended Vigenere Cipher");
+filename = "src/logo.png";
+key = "enkripsi file";
+
+fs.readFile(filename, function (err, file) {
+  if (err) throw err;
+
+  const typedArray = new Uint8Array(file);
+  const array = [...typedArray];
+  cipherfile = eVigenere.encrypt(array, key);
+  plainfile = eVigenere.decrypt(cipherfile, key);
+
+  console.log("    filename :", filename);
+  console.log("       input :", array);
+  console.log("         key :", key);
+  console.log("");
+  console.log("  encryption :", cipherfile);
+  console.log("  decryption :", plainfile);
+  console.log("\n  <<<<<< CIPHER ALGORITHM RESULT >>>>>>");
+});
+

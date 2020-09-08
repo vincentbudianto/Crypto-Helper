@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Encrypt.css";
-import { string } from "mathjs";
 
 let str = require("../../backend/util/string")
 let vigenere = require("../../backend/vigenere");

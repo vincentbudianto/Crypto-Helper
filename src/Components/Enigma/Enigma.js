@@ -9,8 +9,8 @@ const selectStyles = {
   option: (provided, state) => ({
     ...provided,
     borderRadius: "10px",
-    color: "#000000",
-  }),
+    color: "#000000"
+  })
 };
 
 const selectWheel = [
@@ -20,7 +20,7 @@ const selectWheel = [
   { value: "Reflector B", label: "Reflector B" },
   { value: "Reflector C", label: "Reflector C" },
   { value: "Reflector B Thin", label: "Reflector B Thin" },
-  { value: "Reflector C Thin", label: "Reflector C Thin" },
+  { value: "Reflector C Thin", label: "Reflector C Thin" }
 ];
 
 const truncate = (input) => {
